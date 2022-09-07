@@ -1,2 +1,2 @@
-# CCF-330_Design_and_Analysis_of_Algorithms
+# CCF-330_Design and Analysis of Algorithms
 Repository made based in the course of DAA made in college.
