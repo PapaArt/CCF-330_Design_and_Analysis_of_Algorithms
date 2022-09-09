@@ -10,6 +10,6 @@ void asterisk();
 void crossAsterisk();
 void XAsterisk();
 void randomArt();
-void jordan();
+void eiffelTower();
 
 #endif
