@@ -2,7 +2,7 @@
 #define LINE 20
 #define COL 80
 
-void printFrame(){
+void print_frame(int choice, int n){
     
     unsigned char frame[LINE][COL];
     int i, j;
@@ -34,6 +34,8 @@ void printFrame(){
     }
 }
 
-void asterisk(){
+void asterisk(int n){
     
+    
+
 }
