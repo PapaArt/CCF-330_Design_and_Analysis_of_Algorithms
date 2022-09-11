@@ -6,10 +6,11 @@
 #define FRAME_H
 
 void print_frame(int choice, int n);
-void asterisk(int n);
-void cross_asterisk(int n);
-void X_asterisk(int n);
-void random_art(int n);
-void jordan(int n);
+void asterisk();
+void plus_asterisk();
+void X_asterisk();
+void random_art();
+void jordan1();
+void jordan2();
 
 #endif
