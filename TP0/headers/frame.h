@@ -5,12 +5,14 @@
 #ifndef FRAME_H
 #define FRAME_H
 
-void print_frame(int choice, int n);
-void asterisk();
-void plus_asterisk();
-void X_asterisk();
+char **init_frame();
+//void frame(char **frame, int choice, int n);
+void print_frame(char **frame);
+void asterisk(char **frame, int n);
+void plus_asterisk(char **frame, int n);
+void X_asterisk(char **frame);
 void random_art();
-void jordan1();
-void jordan2();
+void jordan1(char **frame);
+void jordan2(char **frame);
 
 #endif

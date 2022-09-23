@@ -2,10 +2,29 @@
 
 void menu(){
     int choice[2];
+    choice[0] = 1;
     int n;
-    
-}
+    char **frame;
 
+    while (choice[0] != 0)
+    {
+        frame = init_frame();
+        print_menu1();
+        scanf("%d", &choice[0]);
+        switch (choice[0])
+        {
+        case 1:
+            print_menu2();
+            scanf("%d", &choice[1]);
+            
+            break;
+        
+        default:
+            break;
+        }
+    }
+       
+}
 void print_menu1(){
 
     printf("ARTWORK GENERATOR PROGRAM:");
