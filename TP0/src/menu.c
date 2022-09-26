@@ -16,9 +16,33 @@ void menu(){
         case 1:
             print_menu2();
             scanf("%d", &choice[1]);
-            
+            asterisk(frame, choice[1]);
+            print_frame(frame);
             break;
-        
+        case 2:
+            print_menu2();
+            scanf("%d", &choice[1]);
+            plus_asterisk(frame, choice[1]);
+            print_frame(frame);
+            break;
+        case 3:
+            print_menu2();
+            scanf("%d", &choice[1]);
+            X_asterisk(frame, choice[1]);
+            print_frame(frame);
+            break;
+        case 4:
+            print_menu2();
+            scanf("%d", &choice[1]);
+            random_art(frame, choice[1]);
+            print_frame(frame);
+            break;
+        case 5:
+            print_menu2();
+            scanf("%d", &choice[1]);
+            jumpman_logo(frame, choice[1]);
+            print_frame(frame);
+            break;
         default:
             break;
         }
@@ -36,5 +60,5 @@ void print_menu1(){
 }
 
 void print_menu2(){
-    printf("\nEnter the number of figures (less than or equal to zero to random): ");
+    printf("\nEnter the number of figures: ");
 }

@@ -31,37 +31,6 @@ char **init_frame()
     return frame;
 }
 
-// void frame(char **frame, int choice, int n)
-// {
-
-//     int random_line, random_column;
-
-//     for (int k = 0; k < n; k++)
-//     {
-//         random_line = (rand() % ((LINE - 2) - 1 + 1)) + 1;
-//         random_column = (rand() % ((COL - 2) - 1 + 1)) + 1;
-
-//         for (int i = 1; i < LINE - 1; i++)
-//         {
-//             for (int j = 1; j < COL - 1; j++)
-//             {
-//                 switch (choice)
-//                 {
-//                 case 1:
-//                     frame[random_line][random_column] = asterisk();
-//                     break;
-//                 case 2:
-//                     plus_asterisk(frame, random_line, random_column);
-//                     break;
-
-//                 default:
-//                     break;
-//                 }
-//             }
-//         }
-//     }
-// }
-
 void print_frame(char **frame)
 {
     for (int i = 0; i < LINE; i++)
@@ -134,120 +103,23 @@ void X_asterisk(char **frame, int n)
     }
 }
 
-void random_art()
+void random_art(char **frame, int n)
 {
     // Idea: give a number to the every art and then, choose one of them randomly
-}
-
-void piano1(char **frame, int n){
-
-    int x, y;
-
-    for (int i = 0; i < n; i++)
-    {
-        while (1)
-        {
-            x = (rand() % ((LINE - 4))) + 1;
-            y = (rand() % ((COL - 4))) + 1;
-
-            if (frame[x][y] == ' ' && frame[x][y - 1] == ' ' && frame[x][y - 2] == ' ' && frame[x][y - 3] == ' ' && frame[x][y + 1] == ' ' && frame[x][y + 2] == ' ' && frame[x][y + 3] == ' ')
-                break;
-            else if (frame[x - 1][y] == ' ' && frame[x - 1][y - 1] == ' ' && frame[x - 1][y - 2] == ' ' && frame[x - 1][y - 3] == ' ' && frame[x - 1][y + 1] == ' ' && frame[x - 1][y + 2] == ' ' && frame[x - 1][y + 3] == ' ')
-                break;
-            else if (frame[x + 1][y] == ' ' && frame[x + 1][y - 1] == ' ' && frame[x + 1][y - 2] == ' ' && frame[x + 1][y - 3] == ' ' && frame[x + 1][y + 1] == ' ' && frame[x + 1][y + 2] == ' ' && frame[x + 1][y + 3] == ' ')
-                break;
-        }
-        frame[x][y] = '_';
-        frame[x][y - 1] = '_';
-        frame[x][y - 2] = '_';
-        frame[x][y - 3] = '|';
-        frame[x][y + 1] = '_';
-        frame[x][y + 2] = '_';
-        frame[x][y + 3] = '|';
-        frame[x - 1][y] = '_';
-        frame[x - 1][y - 1] = '_';
-        frame[x - 1][y - 2] = '_';
-        frame[x - 1][y - 3] = '_';
-        frame[x - 1][y + 1] = '_';
-        frame[x - 1][y + 2] = '_';
-        frame[x - 1][y + 3] = '_';
-        frame[x + 1][y] = '=';
-        frame[x + 1][y - 1] = '=';
-        frame[x + 1][y - 2] = '=';
-        frame[x + 1][y - 3] = '|';
-        frame[x + 1][y + 1] = '=';
-        frame[x + 1][y + 2] = '=';
-        frame[x + 1][y + 3] = '|';
-        frame[x + 2][y] = 'w';
-        frame[x + 2][y - 1] = '-';
-        frame[x + 2][y - 2] = '-';
-        frame[x + 2][y - 3] = '|';
-        frame[x + 2][y + 1] = '-';
-        frame[x + 2][y + 2] = '-';
-        frame[x + 2][y + 3] = '|';
-    }
-}
-
-void piano2(char **frame, int n){
-
-    int x, y;
-
-    for (int i = 0; i < n; i++)
-    {
-        while (1)
-        {
-            x = (rand() % ((LINE - 4))) + 1;
-            y = (rand() % ((COL - 4))) + 1;
-
-            if (frame[x][y] == ' ' && frame[x][y - 1] == ' ' && frame[x][y - 2] == ' ' && frame[x][y - 3] == ' ' && frame[x][y + 1] == ' ' && frame[x][y + 2] == ' ' && frame[x][y + 3] == ' ')
-                break;
-            else if (frame[x - 1][y] == ' ' && frame[x - 1][y - 1] == ' ' && frame[x - 1][y - 2] == ' ' && frame[x - 1][y - 3] == ' ' && frame[x - 1][y + 1] == ' ' && frame[x - 1][y + 2] == ' ' && frame[x - 1][y + 3] == ' ')
-                break;
-            else if (frame[x + 1][y] == ' ' && frame[x + 1][y - 1] == ' ' && frame[x + 1][y - 2] == ' ' && frame[x + 1][y - 3] == ' ' && frame[x + 1][y + 1] == ' ' && frame[x + 1][y + 2] == ' ' && frame[x + 1][y + 3] == ' ')
-                break;
-        }
-        frame[x][y] = '_';
-        frame[x][y - 1] = '_';
-        frame[x][y - 2] = '_';
-        frame[x][y - 3] = '|';
-        frame[x][y + 1] = '_';
-        frame[x][y + 2] = '_';
-        frame[x][y + 3] = '|';
-        frame[x - 1][y] = '_';
-        frame[x - 1][y - 1] = '_';
-        frame[x - 1][y - 2] = '_';
-        frame[x - 1][y - 3] = '_';
-        frame[x - 1][y + 1] = '_';
-        frame[x - 1][y + 2] = '_';
-        frame[x - 1][y + 3] = '_';
-        frame[x + 1][y] = '=';
-        frame[x + 1][y - 1] = '=';
-        frame[x + 1][y - 2] = '=';
-        frame[x + 1][y - 3] = '|';
-        frame[x + 1][y + 1] = '=';
-        frame[x + 1][y + 2] = '=';
-        frame[x + 1][y + 3] = '|';
-        frame[x + 2][y] = 'w';
-        frame[x + 2][y - 1] = '-';
-        frame[x + 2][y - 2] = '-';
-        frame[x + 2][y - 3] = '|';
-        frame[x + 2][y + 1] = '-';
-        frame[x + 2][y + 2] = '-';
-        frame[x + 2][y + 3] = '|';
-    }
-
+    printf("Nada ainda otário\n");
 }
 
 void jordan1(char **frame, int n)
 {
+    // Jordan right-handed
     int x, y;
 
     for (int i = 0; i < n; i++)
     {
         while (1)
         {
-            x = (rand() % ((LINE - 2))) + 1;
-            y = (rand() % ((COL - 2))) + 1;
+            x = (rand() % ((LINE - 2))) + 2;
+            y = (rand() % ((COL - 2))) + 2;
 
             if (frame[x - 2][y - 3] == ' ' && frame[x - 2][y - 2] == ' ' && frame[x - 1][y] == ' ' && frame[x - 1][y - 1] == ' ' && frame[x][y] == ' ' && frame[x][y + 1] == ' ' && frame[x][y + 2] == ' ' && frame[x + 1][y] == ' ' && frame[x + 1][y - 1] == ' ' && frame[x + 1][y + 1] == ' ' && frame[x + 2][y - 3] == ' ' && frame[x + 2][y + 3] == ' ')
                 break;
@@ -269,6 +141,7 @@ void jordan1(char **frame, int n)
 }
 
 void jordan2(char **frame, int n)
+
 {
     int x, y;
 
@@ -276,10 +149,10 @@ void jordan2(char **frame, int n)
     {
         while (1)
         {
-            x = (rand() % ((LINE - 4))) + 1;
-            y = (rand() % ((COL - 4))) + 1;
+            x = (rand() % ((LINE - 2))) + 2;
+            y = (rand() % ((COL - 2))) + 2;
 
-            if (frame[x - 2][y + 3] == ' ' && frame[x - 2][y + 2] == ' ' && frame[x - 1][y] == ' ' && frame[x - 1][y + 1] == ' ' && frame[x][y] == ' ' && frame[x][y - 1] == ' ' && frame[x][y - 2] == ' ' && frame[x + 1][y] == ' ' && frame[x + 1][y - 1] == ' ' && frame[x + 1][y + 1] == ' ' && frame[x + 2][y - 2] == ' ' && frame[x + 2][y + 2] == ' ')
+            if (frame[x - 2][y + 3] == ' ' && frame[x - 2][y + 2] == ' ' && frame[x - 1][y] == ' ' && frame[x - 1][y + 1] == ' ' && frame[x][y] == ' ' && frame[x][y - 1] == ' ' && frame[x][y - 2] == ' ' && frame[x + 1][y] == ' ' && frame[x + 1][y - 1] == ' ' && frame[x + 1][y + 1] == ' ' && frame[x + 2][y - 3] == ' ' && frame[x + 2][y + 3] == ' ')
                 break;
         }
         // Jordan left-handed
@@ -295,5 +168,66 @@ void jordan2(char **frame, int n)
         frame[x + 1][y + 1] = '\\';
         frame[x + 2][y - 3] = '/';
         frame[x + 2][y + 3] = '\\';
+    }
+}
+
+void jumpman_logo(char **frame, int n)
+{
+
+    int x, y, jordan;
+
+    for (int i = 0; i < n; i++)
+    {
+        jordan = (rand() % (2));
+        while (1)
+        {
+            x = (rand() % ((LINE - 2))) + 2;
+            y = (rand() % ((COL - 2))) + 2;
+
+            // Jordan = 0 -> Left-handed
+            // Jordan = 1 -> Right-handed
+            if (jordan == 0)
+            {
+                if (frame[x - 2][y + 3] == ' ' && frame[x - 2][y + 2] == ' ' && frame[x - 1][y] == ' ' && frame[x - 1][y + 1] == ' ' && frame[x][y] == ' ' && frame[x][y - 1] == ' ' && frame[x][y - 2] == ' ' && frame[x + 1][y] == ' ' && frame[x + 1][y - 1] == ' ' && frame[x + 1][y + 1] == ' ' && frame[x + 2][y - 3] == ' ' && frame[x + 2][y + 3] == ' ')
+                    break;
+            }
+            else
+            {
+                if (frame[x - 2][y - 3] == ' ' && frame[x - 2][y - 2] == ' ' && frame[x - 1][y] == ' ' && frame[x - 1][y - 1] == ' ' && frame[x][y] == ' ' && frame[x][y + 1] == ' ' && frame[x][y + 2] == ' ' && frame[x + 1][y] == ' ' && frame[x + 1][y - 1] == ' ' && frame[x + 1][y + 1] == ' ' && frame[x + 2][y - 3] == ' ' && frame[x + 2][y + 3] == ' ')
+                    break;
+            }
+        }
+        if (jordan == 0)
+        {
+            // Jordan left-handed
+            frame[x - 2][y + 3] = 'o';
+            frame[x - 2][y + 2] = '/';
+            frame[x - 1][y] = 'O';
+            frame[x - 1][y + 1] = '/';
+            frame[x][y] = '|';
+            frame[x][y - 1] = '/';
+            frame[x][y - 2] = '_';
+            frame[x + 1][y] = '-';
+            frame[x + 1][y - 1] = '/';
+            frame[x + 1][y + 1] = '\\';
+            frame[x + 2][y - 3] = '/';
+            frame[x + 2][y + 3] = '\\';
+        }
+        else
+        {
+            // Jordan right-handed
+            frame[x - 2][y - 3] = 'o';
+            frame[x - 2][y - 2] = '\\';
+            frame[x - 1][y] = 'O';
+            frame[x - 1][y - 1] = '\\';
+            frame[x][y] = '|';
+            frame[x][y + 1] = '\\';
+            frame[x][y + 2] = '_';
+            frame[x + 1][y] = '-';
+            frame[x + 1][y - 1] = '/';
+            frame[x + 1][y + 1] = '\\';
+            frame[x + 2][y - 3] = '/';
+            frame[x + 2][y + 3] = '\\';
+        }
     }
 }
