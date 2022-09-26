@@ -6,7 +6,8 @@
 #define FRAME_H
 
 char **init_frame();
-//void frame(char **frame, int choice, int n);
+int check_input(int n);
+int check_input_jordan(int n);
 void print_frame(char **frame);
 void asterisk(char **frame, int n);
 void plus_asterisk(char **frame, int n);

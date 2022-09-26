@@ -16,34 +16,35 @@ void menu(){
         case 1:
             print_menu2();
             scanf("%d", &choice[1]);
-            asterisk(frame, choice[1]);
+            asterisk(frame, check_input(choice[1]));
             print_frame(frame);
             break;
         case 2:
             print_menu2();
             scanf("%d", &choice[1]);
-            plus_asterisk(frame, choice[1]);
+            plus_asterisk(frame, check_input(choice[1]));
             print_frame(frame);
             break;
         case 3:
             print_menu2();
             scanf("%d", &choice[1]);
-            X_asterisk(frame, choice[1]);
+            X_asterisk(frame, check_input(choice[1]));
             print_frame(frame);
             break;
         case 4:
             print_menu2();
             scanf("%d", &choice[1]);
-            random_art(frame, choice[1]);
+            random_art(frame, check_input(choice[1]));
             print_frame(frame);
             break;
         case 5:
             print_menu2();
             scanf("%d", &choice[1]);
-            jumpman_logo(frame, choice[1]);
+            jumpman_logo(frame, check_input_jordan(choice[1]));
             print_frame(frame);
             break;
         default:
+            printf("Program ended successfully!!!\n");
             break;
         }
     }
@@ -54,7 +55,7 @@ void print_menu1(){
     printf("ARTWORK GENERATOR PROGRAM:");
     printf("\n=================================");
     printf("\nChoose the type of figure that will be used to generate the artwork:");
-    printf("\n1 - Simple asterisk\n2 - Plus symbol with asterisks\n3 - X with asterisks\n4 - Random figures\n5 - Jumpman logo");
+    printf("\n1 - Simple asterisk\n2 - Plus symbol with asterisks\n3 - X with asterisks\n4 - Random figures\n5 - Jumpman logo\n0 - End program");
     printf("\nEnter the desired basic figure type: ");
 
 }

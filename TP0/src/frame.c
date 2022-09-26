@@ -31,6 +31,26 @@ char **init_frame()
     return frame;
 }
 
+int check_input(int n){
+
+    if (n > 100)
+        return 100;
+    else if (n <= 0)
+        return (rand() % (100)) + 1;
+    else
+        return n;
+}
+
+int check_input_jordan(int n){
+    if (n > 50)
+        return 50;
+    else if (n <= 0)
+        return (rand() % (50)) + 1;
+    else
+        return n;
+}
+
+
 void print_frame(char **frame)
 {
     for (int i = 0; i < LINE; i++)
@@ -50,8 +70,14 @@ void asterisk(char **frame, int n)
 
     for (int i = 0; i < n; i++)
     {
-        x = (rand() % ((LINE - 2))) + 1;
-        y = (rand() % ((COL - 2))) + 1;
+        while (1)
+        {
+            x = (rand() % ((LINE - 2))) + 1;
+            y = (rand() % ((COL - 2))) + 1;
+
+            if (frame[x][y] == ' ')
+                break;
+        }
 
         frame[x][y] = '*';
     }
@@ -106,7 +132,54 @@ void X_asterisk(char **frame, int n)
 void random_art(char **frame, int n)
 {
     // Idea: give a number to the every art and then, choose one of them randomly
-    printf("Nada ainda otário\n");
+    int x, y, random_art;
+
+    for (int i = 0; i < n; i++)
+    {
+        random_art = (rand() % (3));
+
+        while (1)
+        {
+            x = (rand() % ((LINE - 2))) + 1;
+            y = (rand() % ((COL - 2))) + 1;
+
+            if (random_art == 0)
+            {
+                if (frame[x][y] == ' ')
+                    break;
+            }
+            else if (random_art == 1)
+            {
+                if (frame[x][y] == ' ' && frame[x + 1][y] == ' ' && frame[x - 1][y] == ' ' && frame[x][y + 1] == ' ' && frame[x][y - 1] == ' ')
+                    break;
+            }
+            else if (random_art == 2)
+            {
+                if (frame[x][y] == ' ' && frame[x - 1][y - 1] == ' ' && frame[x - 1][y + 1] == ' ' && frame[x + 1][y - 1] == ' ' && frame[x + 1][y + 1] == ' ')
+                    break;
+            }
+        }
+        if (random_art == 0)
+        {
+            frame[x][y] = '*';
+        }
+        else if (random_art == 1)
+        {
+            frame[x][y] = '*';
+            frame[x + 1][y] = '*';
+            frame[x - 1][y] = '*';
+            frame[x][y + 1] = '*';
+            frame[x][y - 1] = '*';
+        }
+        else if (random_art == 2)
+        {
+            frame[x][y] = '*';
+            frame[x - 1][y - 1] = '*';
+            frame[x - 1][y + 1] = '*';
+            frame[x + 1][y - 1] = '*';
+            frame[x + 1][y + 1] = '*';
+        }
+    }
 }
 
 void jordan1(char **frame, int n)
