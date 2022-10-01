@@ -6,7 +6,7 @@ void menu(){
     int n;
     char **frame;
 
-    while (choice[0] != 0)
+    while (choice[0] == 1 || choice[0] == 2 || choice[0] == 3 || choice[0] == 4 || choice[0] == 5)
     {
         frame = init_frame();
         print_menu1();

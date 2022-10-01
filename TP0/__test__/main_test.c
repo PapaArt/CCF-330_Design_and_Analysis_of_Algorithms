@@ -7,7 +7,7 @@ int main(){
     //X_asterisk(quadro, 20);
     //jordan1(quadro, 50);
     //jordan2(quadro, 12);
-    //print_frame(quadro);
+    print_frame(quadro);
     
     return 0;
 }

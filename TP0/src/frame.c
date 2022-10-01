@@ -50,7 +50,6 @@ int check_input_jordan(int n){
         return n;
 }
 
-
 void print_frame(char **frame)
 {
     for (int i = 0; i < LINE; i++)
