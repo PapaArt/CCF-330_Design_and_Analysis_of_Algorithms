@@ -1,6 +1,6 @@
-#include "headers/way.h"
+#include "../headers/way.h"
 
 int move(){
     
-    return 
+    return 0;
 }
