@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#ifndef WAY_H
+#define WAY_H
+
+#define UP 3
+#define DOWN 4
+#define LEFT 2
+#define RIGHT 5
+
 
 // Criar a estrutura neste arquivo
 // Convencao: usar snake case
@@ -22,8 +30,6 @@ typedef struct {
 
 void make_list_empty(list_type *list);
 void insert(field field, list_type *tlist);
-void print_way(list_type list, int n);
-// Função para ler o mapa em que será feita a movimentação
-void read_field();
-// Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
-int movement();
+void print_way(list_type *list, int n);
+
+#endif

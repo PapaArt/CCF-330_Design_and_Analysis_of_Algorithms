@@ -1,7 +1,8 @@
 #include "../headers/menu.h"
 
 int main(){
-    menu();
+    //menu();
 
+    menu();
     return 0;
 }
