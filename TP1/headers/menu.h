@@ -1,4 +1,4 @@
-#include "way.h"
+#include "map.h"
 
 void menu();
 void print_menu1();

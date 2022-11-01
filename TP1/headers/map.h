@@ -1,6 +1,14 @@
-#include "way.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #ifndef MAP_H
 #define MAP_H
+
+#define UP 3
+#define DOWN 4
+#define LEFT 2
+#define RIGHT 5
 
 typedef struct map
 {
@@ -16,7 +24,7 @@ typedef struct data
 void initialize_map(map *map, int width, int height);
 void insert_line(map *map, int position, char *line);
 // Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
-int movement();
+int movement(map *map, int position);
 void initialize_data(data *data);
 void print_field();
 

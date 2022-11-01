@@ -23,15 +23,15 @@ void insert_line(map *map, int position, char *line)
     }
 }
 
-// Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
-int movement()
-{
-
-}
-
 void initialize_data(data *data)
 {
     data->number_of_recursions = -1;
+}
+
+// Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
+int movement(map *map, int position)
+{
+
 }
 
 void print_field()
