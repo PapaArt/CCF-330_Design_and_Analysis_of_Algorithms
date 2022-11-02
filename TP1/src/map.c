@@ -28,6 +28,17 @@ void initialize_data(data *data)
     data->number_of_recursions = -1;
 }
 
+int** tracking(map *map, data *data) {
+    int track[map->width][map->height];
+    int actualPosition = {0,0};
+    int sequence = 
+    do
+    {
+        movement(map, data, track, actualPosition, 0, );
+    } while (/* condition */);
+    
+}
+
 // Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
 int movement(map *map, data *data, int **track, int* actualPosition, int n, int* sequence) {
     track[n] = actualPosition;
