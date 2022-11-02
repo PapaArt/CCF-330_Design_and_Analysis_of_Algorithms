@@ -29,9 +29,9 @@ void initialize_data(data *data)
 }
 
 // Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
-int movement(map *map, int position)
+int movement(map *map, int *direction, data *data, int line, int column)
 {
-
+    
 }
 
 void print_field()
