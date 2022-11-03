@@ -1,17 +1,20 @@
-#define TAM 1000;
+#include "../headers/fibonnaci.h"
 
-int* fibonnaci() {
-	int sequence[1000];
-	int count = 0;
-
-
-}
-
-void fib(int n, int* sequence, int *count) {	
-	int sequence
-    for (int i = 0; i < n; i++)
+int *fib(int n) {	
+	int sequence[n];
+	int i = 0, flag = 1, count = 1;
+	while (flag)
 	{
-		if (i < 2) sequence		
+		for (int j = 0; j < count; j++)	{
+			if (i == n) {
+				flag = 0;
+				break;
+			}
+			if (j < 2) sequence[i] = 1;
+			else sequence[i] = sequence[i-1] + sequence[i-2]
+			i++;
+		}
+		count++;
 	}
-	
+	return sequence;
 }
