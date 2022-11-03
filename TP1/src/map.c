@@ -1,4 +1,4 @@
-#include "../include/map.h"
+#include "../headers/map.h"
 
 void initialize_map(map *map, int width, int height)
 {
@@ -28,49 +28,82 @@ void initialize_data(data *data)
     data->number_of_recursions = -1;
 }
 
-int** tracking(map *map, data *data) {
-    int track[map->width][map->height];
-    int actualPosition = {0,0};
-    int sequence = 
-    do
-    {
-        movement(map, data, track, actualPosition, 0, );
-    } while (/* condition */);
-    
-}
+// int** tracking(map *map, data *data) {
+//     int track[map->width][map->height];
+//     int actualPosition = {0,0};
+//     int sequence = 
+//     do
+//     {
+//         movement(map, data, track, actualPosition, 0, );
+//     } while (/* condition */);   
+// }
+
 
 // Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
+/*
 int movement(map *map, data *data, int **track, int* actualPosition, int n, int* sequence) {
     track[n] = actualPosition;
     
 
-    movement(map, data, track, [1, 2], n+1);
+    return movement(map, data, track, [1, 2], n+1);
+*/
+int movement(map *map, int direction, data *data, int line, int column)
+{
+    if (direction == LEFT && !(already_visited(map, &direction)))
+    {
+
+        return movement(map, LEFT, data, line, column - 1) - movement(map, LEFT, data, line, column - 2);
+    }   
+    else if (direction == RIGHT && !(already_visited(map, &direction)))
+    {
+        
+        return movement(map, RIGHT, data, line, column + 1) - movement(map, RIGHT, data, line, column + 2);
+    }
+    else if (direction == UP && !(already_visited(map, &direction)))
+    {
+        return movement(map, UP, data, line - 1, column) - movement(map, UP, data, line - 2, column);
+    }
+    else if (direction == DOWN && !(already_visited(map, &direction)))
+    {
+        return movement(map, DOWN, data, line + 1, column) - movement(map, DOWN, data, line + 2, column);
+    }
 }
 
-void print_field()
+int already_visited(map *map, int *direction)
 {
-	FILE *fptr;
+    switch (*direction)
+    {
+    case UP:
+        return TRUE;
+        break;
+    case DOWN:
+        return TRUE;
+        break;
+    case RIGHT:
+        return TRUE;
+        break;
+    case LEFT:
+        return TRUE;
+        break;
+    default:
+        return FALSE;
+        break;
+    }
+}
 
-	char c;
-    char *filename;
+void results(map *map, int line, int column)
+{
+     
+}
 
-    filename = "./data/field.txt";
+void print_field(map *map)
+{
+	for (int i = 0; i < map->width; i++)
+    {
+        for (int j = 0; j < map->height; j++)
+        {
+            printf("%c", map->map[i][j]);
+        }
+    }
     
-	// Open file
-	fptr = fopen(filename, "r");
-	if (fptr == NULL)
-	{
-		printf("Cannot open file \n");
-		exit(0);
-	}
-
-	// Read contents from file
-	c = fgetc(fptr);
-	while (c != EOF)
-	{
-		printf ("%c", c);
-		c = fgetc(fptr);
-	}
-    printf("\n");
-	fclose(fptr);
 }

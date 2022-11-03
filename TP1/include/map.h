@@ -10,6 +10,9 @@
 #define LEFT 2
 #define RIGHT 5
 
+#define TRUE 1
+#define FALSE 0
+
 typedef struct map
 {
     int width, height;
@@ -23,8 +26,12 @@ typedef struct data
 
 void initialize_map(map *map, int width, int height);
 void insert_line(map *map, int position, char *line);
-int movement(map *map, data *data, int **track, int* actualPosition);
+//int movement(map *map, data *data, int **track, int* actualPosition);
+// Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
+int movement(map *map, int direction, data *data, int line, int column);
+int already_visited(map *map, int *direction);
+void results(map *map, int line, int column); 
 void initialize_data(data *data);
-void print_field();
+void print_field(map *map);
 
 #endif
