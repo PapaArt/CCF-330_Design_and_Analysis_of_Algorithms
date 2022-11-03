@@ -1,4 +1,4 @@
-#include "../headers/map.h"
+#include "../include/map.h"
 
 void initialize_map(map *map, int width, int height)
 {

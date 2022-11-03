@@ -1,6 +1,6 @@
-#include "../headers/fibonnaci.h"
+#include "../include/fibonnaci.h"
 
-int *fib(int n) {	
+int* fibonnaci(int n) {	
 	int sequence[n];
 	int i = 0, flag = 1, count = 1;
 	while (flag)
