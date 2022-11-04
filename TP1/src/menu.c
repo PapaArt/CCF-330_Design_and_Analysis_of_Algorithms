@@ -5,6 +5,7 @@ void menu(map *map, data *data){
     FILE *fptr;
     int choice;
     print_menu1();
+    scanf("%d", &choice);
 
     while (choice < 3)
     {
@@ -28,8 +29,6 @@ void menu(map *map, data *data){
         else
         {break;}
     }
-    
-
 }
 
 void print_menu1(){
@@ -98,8 +97,8 @@ void print_menu1(){
 void remap(map *map, FILE *fptr, char filename[100], char path[100], char **line, int *lines, int *height, int *width, int *line_map, int *resposta, data *data, int *option)
 {
     const char *base_path = "./data/";
+    printf("Digite o nome do arquivo: ");
     scanf("%s", filename);
-
     strcat(strcpy(path, base_path), filename);
     printf("%s\n", path);
 
@@ -153,7 +152,7 @@ void remap(map *map, FILE *fptr, char filename[100], char path[100], char **line
 
     if ((*resposta) == 0)
     {
-        printf("IMPOSSIVEL!!!");
+        printf("IMPOSSIVEL!!!\n");
     }
     else
     {

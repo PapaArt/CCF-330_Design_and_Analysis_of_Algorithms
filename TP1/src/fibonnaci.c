@@ -1,4 +1,4 @@
-#include "../include/fibonnaci.h"
+#include "../headers/fibonnaci.h"
 
 int* fibonnaci(int n) {	
 	int sequence[n];
