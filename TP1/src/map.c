@@ -33,7 +33,10 @@ int **beginMovement(map *map, data *data) {
         result = movement(map, data, track, actualPosition, 0, sequence);
         if (result) break;
     }
-    return track;
+    if (result) return track;
+    else {
+        track[0] = '\0';        
+    }
 }
 
 // Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
@@ -79,8 +82,7 @@ int movement(map *map, data *data, int **track, int *actualPosition, int index, 
             nextPosition[1] = actualPosition[1]+1;
             result = movement(map, data, track, nextPosition, index+1, sequence);
             if (result) return 1;
-        }
-    
+        }    
     return 0;
 }
 
