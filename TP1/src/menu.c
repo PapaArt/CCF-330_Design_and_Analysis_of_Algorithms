@@ -10,8 +10,8 @@ void menu(map *map, data *data){
     while (choice < 3)
     {
         const char *base_path = "./data/";
-        char *line, filename[100], path[100];
-        int width, height, resposta, file_not_found;
+        char filename[100], path[100];
+        int width, height, resposta, file_not_found, *line;
         int lines = 0, line_map = 0; 
 
         if (choice == 1)
@@ -94,7 +94,7 @@ void print_menu1(){
 
 }
 
-void remap(map *map, FILE *fptr, char filename[100], char path[100], char **line, int *lines, int *height, int *width, int *line_map, int *resposta, data *data, int *option)
+void remap(map *map, FILE *fptr, char filename[100], char path[100], int **line, int *lines, int *height, int *width, int *line_map, int *resposta, data *data, int *option)
 {
     const char *base_path = "./data/";
     printf("Digite o nome do arquivo: ");
@@ -124,12 +124,12 @@ void remap(map *map, FILE *fptr, char filename[100], char path[100], char **line
             fscanf(fptr, "%d %d", &(*height), &(*width));
             initialize_map(map, (*width), (*height));
 
-            (*line) = (char *)calloc((*width), sizeof(char));
+            (*line) = (int *)calloc((*width), sizeof(int));
         }
         else if ((*lines) >= 1 && (*lines) <= 1 + (*height))
         {
             // Map itself
-            fscanf((fptr), "%s", (*line));
+            fscanf((fptr), "%d", (*line));
             insert_line(map, (*line_map), (*line));
             (*line_map)++;
         }
