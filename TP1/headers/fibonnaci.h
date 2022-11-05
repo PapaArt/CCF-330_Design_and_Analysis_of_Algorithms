@@ -1,3 +1,4 @@
-#include "map.h"
+#include <stdio.h>
 
-int* fibonnaci(int n);
+void fibonnaci(int* sequence, int n);
+void printFibonnaci(int* sequence, int n);

@@ -1,15 +1,10 @@
-#include "../include/fibonnaci.h"
-#include <stdio.h>
+#include "../headers/fibonnaci.h"
 
 int main() {
-	int *sequence;
+    int sequence[100];
 
-	sequence = fibonnaci(100);
+    fibonnaci(sequence, 100);
+	printFibonnaci(sequence, 100);
 
-	for (int i = 0; i < 100; i++)
-	{
-		printf("%d\n", sequence[i]);
-	}
-	
-	return 0;
+    return 0;
 }
