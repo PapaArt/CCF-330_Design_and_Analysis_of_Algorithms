@@ -22,35 +22,38 @@ void initialize_data(data *data) {
     data->number_of_recursions = -1;
 }
 
-int beginMovement(Map *map, data *data, int **track) {
+int beginMovement(Map *map, data *data, int **track, int* index) {
     int result, flag = 0;
     int n = map->height * map->width;
     int *sequence;
+    int actualPosition[2];
+    actualPosition[0] = 0;
     fibonnaci(sequence, n);
     for (int i = 0; i < map->width; i++) {
-        int actualPosition = {0, i};
-        result = movement(map, data, track, actualPosition, 0, sequence);
+        actualPosition[1] = i;
+        result = movement(map, data, track, actualPosition, index, sequence);
         if (result) break;
     }
     return result;
 }
 
-int movement(Map *map, data *data, int **track, int *actualPosition, int index, int *sequence) {
+int movement(Map *map, data *data, int **track, int *actualPosition, int* index, int *sequence) {
     int result;
     int trackOk[2];
     int nextPosition[2];
 
-    if (map->map[actualPosition[0]][actualPosition[1]] == sequence[index] + '0') {
+    if (map->map[actualPosition[0]][actualPosition[1]] == sequence[(*index)] + '0') {
         trackOk[0] = actualPosition[0];
         trackOk[1] = actualPosition[1];
-        track[index] = trackOk;
+        track[(*index)] = trackOk;
+        (*index) = (*index) + 1;
         if (actualPosition[0] == map->height) return 1;
 
         if (actualPosition[0] > 0) //movement para esquerda
         {
             nextPosition[0] = actualPosition[0]-1;
             nextPosition[1] = actualPosition[1];
-            result = movement(map, data, track, nextPosition, index+1, sequence);
+            result = movement(map, data, track, nextPosition, index, sequence);
             if (result) return 1;
         }
 
@@ -58,7 +61,7 @@ int movement(Map *map, data *data, int **track, int *actualPosition, int index, 
         {
             nextPosition[0] = actualPosition[0]+1;
             nextPosition[1] = actualPosition[1];
-            result = movement(map, data, track, nextPosition, index+1, sequence);
+            result = movement(map, data, track, nextPosition, index, sequence);
             if (result) return 1;
         }
 
@@ -66,7 +69,7 @@ int movement(Map *map, data *data, int **track, int *actualPosition, int index, 
         {  
             nextPosition[0] = actualPosition[0];
             nextPosition[1] = actualPosition[1]-1;
-            result = movement(map, data, track, nextPosition, index+1, sequence);
+            result = movement(map, data, track, nextPosition, index, sequence);
             if (result) return 1;
         }
 
@@ -74,7 +77,7 @@ int movement(Map *map, data *data, int **track, int *actualPosition, int index, 
         {
             nextPosition[0] = actualPosition[0];
             nextPosition[1] = actualPosition[1]+1;
-            result = movement(map, data, track, nextPosition, index+1, sequence);
+            result = movement(map, data, track, nextPosition, index, sequence);
             if (result) return 1;
         }
     }   

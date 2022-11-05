@@ -1,6 +1,6 @@
 #include "../headers/menu.h"
 
-void menu(map *map, data *data){
+void menu(Map *map, data *data){
 
     FILE *fptr;
     int choice;
@@ -94,7 +94,7 @@ void print_menu1(){
 
 }
 
-void remap(map *map, FILE *fptr, char filename[100], char path[100], char **line, int *lines, int *height, int *width, int *line_map, int *resposta, data *data, int *option)
+void remap(Map *map, FILE *fptr, char filename[100], char path[100], char **line, int *lines, int *height, int *width, int *line_map, int *resposta, data *data, int *option)
 {
     const char *base_path = "./data/";
     printf("Digite o nome do arquivo: ");
@@ -148,14 +148,26 @@ void remap(map *map, FILE *fptr, char filename[100], char path[100], char **line
 
     int direction = 0;
 
-    (*resposta) = movement(map, direction, data, *lines, map->height);
+    // (*resposta) = movement(map, direction, data, *lines, map->height);
+    int n = map->height * map->width;
+    int **track = (int**)malloc(n*sizeof(int*));
+    int *index;
+    *index = 0;
+    resposta = beginMovement(map, data, track, index);
 
-    if ((*resposta) == 0)
+    if (resposta == 0)
     {
         printf("IMPOSSIVEL!!!\n");
     }
     else
     {
-        printf("Posicoes:");
+        printf("\n");
+        for (int i = 0; track[i] != '\0'; i++) {
+            for (int j = 0; j < 2; j++)
+            {
+                printf("%d ", track[i][j]);
+            }
+            printf("\n");
+        }        
     }
 }

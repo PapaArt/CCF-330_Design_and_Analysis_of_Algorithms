@@ -29,8 +29,8 @@ void initialize_map(Map *map, int width, int height);
 void insert_line(Map *map, int position, char *line);
 //int movement(map *map, data *data, int **track, int* actualPosition);
 // Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
-int beginMovement(Map *map, data *data, int **track);
-int movement(Map *map, data *data, int **track, int *actualPosition, int index, int *sequence);
+int beginMovement(Map *map, data *data, int **track, int* index);
+int movement(Map *map, data *data, int **track, int *actualPosition, int* index, int *sequence);
 int already_visited(Map *map, int *direction);
 void results(Map *map, int line, int column); 
 void initialize_data(data *data);
