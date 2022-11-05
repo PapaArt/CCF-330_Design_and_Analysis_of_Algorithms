@@ -33,30 +33,38 @@ void initialize_data(data *data)
 
 int movement(map *map, data *data, int **track, int* actualPosition, int n, int* git ) {
 
+    return movement(map, data, track, [1, 2], n+1);
 }
-
-// ARTHUR
-// int movement(map *map, int direction, data *data, int line, int column)
-// {
-//     if (direction == LEFT && !(already_visited(map, &direction)))
-//     {
-
-//         return movement(map, LEFT, data, line, column - 1) - movement(map, LEFT, data, line, column - 2);
-//     }   
-//     else if (direction == RIGHT && !(already_visited(map, &direction)))
-//     {
-        
-//         return movement(map, RIGHT, data, line, column + 1) - movement(map, RIGHT, data, line, column + 2);
-//     }
-//     else if (direction == UP && !(already_visited(map, &direction)))
-//     {
-//         return movement(map, UP, data, line - 1, column) - movement(map, UP, data, line - 2, column);
-//     }
-//     else if (direction == DOWN && !(already_visited(map, &direction)))
-//     {
-//         return movement(map, DOWN, data, line + 1, column) - movement(map, DOWN, data, line + 2, column);
-//     }
-// }
+/*
+ARTUR
+int movement(map *map, int direction, data *data, int line, int column)
+{
+    if (direction == LEFT)
+    {
+        printf("LEFT\n");
+        direction = UP;
+        return movement(map, LEFT, data, line, column - 1);
+    }   
+    else if (direction == RIGHT)
+    {    
+        printf("RIGHT\n");
+        direction = DOWN;
+        return movement(map, RIGHT, data, line, column + 1);
+    }
+    else if (direction == UP)
+    {
+        printf("UP\n");
+        direction = RIGHT;
+        return movement(map, UP, data, line - 1, column);
+    }
+    else if (direction == DOWN)
+    {
+        printf("DOWN\n");
+        direction = LEFT;
+        return movement(map, DOWN, data, line + 1, column);
+    }
+}
+*/
 
 // int already_visited(map *map, int *direction)
 // {

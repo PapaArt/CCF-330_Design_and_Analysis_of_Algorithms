@@ -12,17 +12,17 @@ void menu(map *map, data *data){
         const char *base_path = "./data/";
         char *line, filename[100], path[100];
         int width, height, resposta, file_not_found;
-        int lines = 0, line_map = 0; 
+        int lines = 0, line_map = 0, column = 0; 
 
         if (choice == 1)
         {
-            remap(map, fptr, filename, path, &line, &lines, &height, &width, &line_map, &resposta, data, &choice);
+            remap(map, fptr, filename, path, &line, &lines, &height, &width, &line_map, &column, &resposta, data, &choice);
             break;
         }
         else if (choice == 2)
         {
             initialize_data(data);
-            remap(map, fptr, filename, path, &line, &lines, &height, &width, &line_map, &resposta, data, &choice);
+            remap(map, fptr, filename, path, &line, &lines, &height, &width, &line_map, &column, &resposta, data, &choice);
             printf("Total de chamadas recursivas: %d\n", data->number_of_recursions);
             break;
         }
@@ -94,7 +94,7 @@ void print_menu1(){
 
 }
 
-void remap(map *map, FILE *fptr, char filename[100], char path[100], char **line, int *lines, int *height, int *width, int *line_map, int *resposta, data *data, int *option)
+void remap(map *map, FILE *fptr, char filename[100], char path[100], char **line, int *lines, int *height, int *width, int *line_map, int *column, int *resposta, data *data, int *option)
 {
     const char *base_path = "./data/";
     printf("Digite o nome do arquivo: ");
@@ -146,9 +146,10 @@ void remap(map *map, FILE *fptr, char filename[100], char path[100], char **line
 
     fclose(fptr);
 
-    int direction = 0;
-
-    (*resposta) = movement(map, direction, data, *lines, map->height);
+    int direction = 4;
+    *lines = 0;
+    printf("Lines value: %d\n", *lines);
+    (*resposta) = movement(map, direction, data, *lines, *column);
 
     if ((*resposta) == 0)
     {
@@ -156,6 +157,6 @@ void remap(map *map, FILE *fptr, char filename[100], char path[100], char **line
     }
     else
     {
-        printf("Posicoes:");
+        printf("Posicoes: \n");
     }
 }
