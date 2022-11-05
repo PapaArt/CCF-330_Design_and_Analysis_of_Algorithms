@@ -16,7 +16,7 @@
 typedef struct map
 {
     int width, height;
-    int **map;
+    char **map;
 } map;
 
 typedef struct data
@@ -25,7 +25,7 @@ typedef struct data
 } data;
 
 void initialize_map(map *map, int width, int height);
-void insert_line(map *map, int position, int *line);
+void insert_line(map *map, int position, char *line);
 //int movement(map *map, data *data, int **track, int* actualPosition);
 // Função para fazer a movimentação do fazendeiro, necessidade de definir os parâmetros
 int movement(map *map, int direction, data *data, int line, int column);

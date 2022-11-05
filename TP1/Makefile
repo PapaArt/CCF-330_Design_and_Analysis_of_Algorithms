@@ -7,6 +7,7 @@ TEST = ./test
 
 all: libed
 	gcc $(APP)/main.c $(OBJ)/menu.o $(OBJ)/map.o -o ./dist/main
+	$(DIST)/main
 
 libed:
 	gcc -c $(SRC)/map.c -I $(HEADERS) -o $(OBJ)/map.o
