@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "fibonnaci.h"
 #ifndef MAP_H
 #define MAP_H
 
