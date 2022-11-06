@@ -29,11 +29,11 @@ void print_field(Map *map) {
     }
 }
 
-void initialize_data(data *data) {
+void initialize_data(Data *data) {
     data->number_of_recursions = -1;
 }
 
-int beginMovement(Map *map, data *data, int **track, int* index) {
+int beginMovement(Map *map, Data *data, int **track, int* index) {
     int result;
     int n = map->height * map->width;
     int *sequence;
@@ -48,7 +48,7 @@ int beginMovement(Map *map, data *data, int **track, int* index) {
     return result;
 }
 
-int movement(Map *map, data *data, int **track, int *actualPosition, int* index, int *sequence) {
+int movement(Map *map, Data *data, int **track, int *actualPosition, int* index, int *sequence) {
     int result;
     int trackOk[2];
     int nextPosition[2];

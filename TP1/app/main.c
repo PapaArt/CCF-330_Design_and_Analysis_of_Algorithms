@@ -3,7 +3,7 @@
 int main(){
 
     Map *map;
-    data *data;
+    Data *data = (Data*)malloc(sizeof(Data));
     menu(map, data);
     return 0;
 }

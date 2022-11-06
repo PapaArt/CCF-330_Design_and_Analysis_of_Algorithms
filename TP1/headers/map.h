@@ -15,16 +15,16 @@ typedef struct Map
     int **map;
 } Map;
 
-typedef struct data
+typedef struct Data
 {
     int number_of_recursions;
-} data;
+} Data;
 
 Map* initialize_map(int width, int height);
 void insert_line(Map *map, int position, int *line);
-void initialize_data(data *data);
+void initialize_data(Data *data);
 void print_field(Map *map);
-int beginMovement(Map *map, data *data, int **track, int* index);
-int movement(Map *map, data *data, int **track, int *actualPosition, int* index, int *sequence);
+int beginMovement(Map *map, Data *data, int **track, int* index);
+int movement(Map *map, Data *data, int **track, int *actualPosition, int* index, int *sequence);
 
 #endif
