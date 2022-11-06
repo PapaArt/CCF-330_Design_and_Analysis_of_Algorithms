@@ -3,39 +3,33 @@
 void menu() {
     Data *data = (Data*)malloc(sizeof(data)); 
     int choice;
-    print_menu1();
-    scanf("%d", &choice);
-    if (choice >= 3)
-    {
-        printf("Programa finalizado com sucesso!!!\n");
-    }
-    while (choice < 3) {
-        const char *base_path = "./data/";
-        char filename[100], path[100];
-
-        if (choice == 1)
-        {        
-            initialize_data(data);
-            remap(data);
-        }
-        else if (choice == 2)
-        {
-            initialize_data(data);
-            remap(data);
-            printf("Total de chamadas recursivas: %d\n", data->number_of_recursions);
-        }
-        else if (choice >= 3)
-        {
-            printf("Programa finalizado com sucesso!!!\n");
-            break;
-        }
+    int flag = TRUE;
+    const char *base_path = "./data/";
+    char filename[100], path[100];
+    while (flag) {
         print_menu1();
         scanf("%d", &choice);
-    }
+        switch (choice) {
+            case 1:
+                initialize_data(data);
+                remap(data);
+                break;
+            case 2:
+                initialize_data(data);
+                remap(data);
+                printf("Total de chamadas recursivas: %d\n", data->number_of_recursions);
+                break;
+            case 3:
+                printf("Programa finalizado com sucesso!!!\n");
+                flag = FALSE;
+                break;
+            default:
+                break;            
+        }
+    }    
 }
 
-void print_menu1(){
-    
+void print_menu1(){    
     int i;
     fputs(" ", stdout);
     for (i = 0; i < 113; i++)
@@ -99,7 +93,7 @@ void print_menu1(){
 
 void remap(Data *data)
 {   
-    Map *map;
+    Map *map = (Map*)malloc(sizeof(Map));
     FILE *fptr;
     char filename[100];
     char path[100];
@@ -110,8 +104,6 @@ void remap(Data *data)
     char* word;
     int height = 1, width;
     int resposta;
-    int** track;
-    int index = 0;
     int flag;
     
     printf("Digite o nome do arquivo: ");
@@ -132,7 +124,7 @@ void remap(Data *data)
 
         (fptr) = fopen(path, "r");
     }  
-
+   
     printf("Arquivo carregado com sucesso!\n\n");
 
     while (!feof(fptr))
@@ -140,8 +132,8 @@ void remap(Data *data)
         flag = fgets(line, 100, fptr);
         if (flag) {
             if (count == 0) {
-                sscanf(line, "%d %d", &height, &width);			
-                map = initialize_map(width, height);
+                sscanf(line, "%d %d", &height, &width);
+                initialize_map(&map, width, height);
             } else {
                 j = 0;
                 word = strtok(line, " ");
@@ -156,24 +148,21 @@ void remap(Data *data)
         count++;
     }
     fclose(fptr);    
-    printf("Matriz: %d x %d\n", width, height);
+    printf("Matriz: %d x %d\n", height, width);
     print_field(map);
     printf("\n");
 
-    track = (int**)malloc(width*height*(sizeof(int*)));
+    resposta = beginMovement(map, data);
 
-    resposta = beginMovement(map, data, track, &index);
-
-    if (resposta == FALSE)
-    {
-        printf("IMPOSSÍVEL!\n");
-    }
-
-    free(track);
     for (int i = 0; i < height; i++)
     {
         free(map->map[i]);
     }    
     free(map->map);
     free(map);
+
+    if (resposta == FALSE)
+    {
+        printf("IMPOSSÍVEL!\n");
+    }
 }

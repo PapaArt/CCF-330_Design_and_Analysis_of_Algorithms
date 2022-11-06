@@ -1,15 +1,13 @@
 #include "../headers/map.h"
 
-Map* initialize_map(int width, int height) {
-    Map *map = (Map*)malloc(sizeof(Map));
-    map->height = height;
-    map->width = width;
+void initialize_map(Map** map, int width, int height) {
+    (*map)->height = height;
+    (*map)->width = width;
 
-    map->map = (int **)malloc(height * sizeof(int *));
+    (*map)->map = (int **)malloc(height * sizeof(int *));
     for (int i = 0; i < height; i++) {
-        map->map[i] = (int *)malloc(width * sizeof(int));
+        (*map)->map[i] = (int *)malloc(width * sizeof(int));
     }
-    return map;
 }
 
 void print_field(Map *map) {
@@ -25,18 +23,36 @@ void initialize_data(Data *data) {
     data->number_of_recursions = -1;
 }
 
-int beginMovement(Map *map, Data *data, int **track, int* index) {
+int beginMovement(Map *map, Data *data) {
     int result = FALSE;
     int n = map->height * map->width;
-    int *sequence;
     int actualPosition[2];
+    int index = 0;
     actualPosition[0] = 0;
+
+    int *sequence = (int*)malloc(n * sizeof(int));
     fibonnaci(sequence, n);
+
+    int** track = (int**)malloc(n * (sizeof(int*)));
+    for (int i = 0; i < n; i++)
+    {
+        track[i] = (int*)malloc(2 * sizeof(int));
+    }  
+
+
     for (int i = 0; i < map->width; i++) {
         actualPosition[1] = i;
-        result = movement(map, data, track, actualPosition, index, sequence);
+        result = movement(map, data, track, actualPosition, &index, sequence);
         if (result) break;
     }
+
+    free(sequence);
+    for (int i = 0; i < n; i++)
+    {
+        free(track[i]);
+    } 
+    free(track);
+
     return result;
 }
 
@@ -57,19 +73,17 @@ void printTrack(int** track, int *index) {
 
 int movement(Map *map, Data *data, int **track, int *actualPosition, int* index, int *sequence) {
     int result;
-    int trackOk[2];
     int nextPosition[2];
     data->number_of_recursions++;
 
     if (map->map[actualPosition[0]][actualPosition[1]] == sequence[(*index)]) {
-        trackOk[0] = actualPosition[0];
-        trackOk[1] = actualPosition[1];
-        track[(*index)] = trackOk;
+        track[(*index)][0] = actualPosition[0];
+        track[(*index)][1] = actualPosition[1];
 
         if (actualPosition[0] == ((map->height)-1)) {
             printf("\n\nPosicoes: \n");
             printTrack(track, index);
-            return 1;
+            return TRUE;
         }
 
         (*index) = (*index) + 1;
@@ -79,7 +93,7 @@ int movement(Map *map, Data *data, int **track, int *actualPosition, int* index,
             nextPosition[1] = actualPosition[1];
             if (!inTracking(track, nextPosition, index)) {
                 result = movement(map, data, track, nextPosition, index, sequence);
-                if (result) return 1;
+                if (result) return TRUE;
             }
         }
 
@@ -89,7 +103,7 @@ int movement(Map *map, Data *data, int **track, int *actualPosition, int* index,
             nextPosition[1] = actualPosition[1];
             if (!inTracking(track, nextPosition, index)) {
                 result = movement(map, data, track, nextPosition, index, sequence);
-                if (result) return 1;
+                if (result) return TRUE;
             }
         }
 
@@ -99,7 +113,7 @@ int movement(Map *map, Data *data, int **track, int *actualPosition, int* index,
             nextPosition[1] = actualPosition[1]-1;
             if (!inTracking(track, nextPosition, index)) {
                 result = movement(map, data, track, nextPosition, index, sequence);
-                if (result) return 1;
+                if (result) return TRUE;
             }
         }
 
@@ -109,10 +123,10 @@ int movement(Map *map, Data *data, int **track, int *actualPosition, int* index,
             nextPosition[1] = actualPosition[1]+1;
             if (!inTracking(track, nextPosition, index)) {
                 result = movement(map, data, track, nextPosition, index, sequence);
-                if (result) return 1;
+                if (result) return TRUE;
             }
         }
         (*index) = (*index) - 1;
     }
-    return 0;
+    return FALSE;
 }
