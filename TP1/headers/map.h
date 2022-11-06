@@ -26,5 +26,7 @@ void initialize_data(Data *data);
 void print_field(Map *map);
 int beginMovement(Map *map, Data *data, int **track, int* index);
 int movement(Map *map, Data *data, int **track, int *actualPosition, int* index, int *sequence);
+int inTracking(int **track, int* position, int *index);
+void printTrack(int** track, int *index);
 
 #endif
