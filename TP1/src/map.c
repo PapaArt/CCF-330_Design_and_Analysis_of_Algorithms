@@ -12,17 +12,9 @@ Map* initialize_map(int width, int height) {
     return map;
 }
 
-void insert_line(Map *map, int position, int *line) {
+void print_field(Map *map) {
     for (int i = 0; i < map->width; i++) {
         for (int j = 0; j < map->height; j++) {
-            map->map[position][j] = line[j];
-        }
-    }
-}
-
-void print_field(Map *map) {
-    for (int i = 0; i < map->height; i++) {
-        for (int j = 0; j < map->width; j++) {
             printf("%d ", map->map[i][j]);
         }
         printf("\n");
