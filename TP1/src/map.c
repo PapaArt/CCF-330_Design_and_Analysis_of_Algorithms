@@ -18,12 +18,20 @@ void insert_line(Map *map, int position, char *line) {
     }
 }
 
+void print_field(Map *map) {
+    for (int i = 0; i < map->width; i++) {
+        for (int j = 0; j < map->height; j++) {
+            printf("%c", map->map[i][j]);
+        }
+    }
+}
+
 void initialize_data(data *data) {
     data->number_of_recursions = -1;
 }
 
 int beginMovement(Map *map, data *data, int **track, int* index) {
-    int result, flag = 0;
+    int result;
     int n = map->height * map->width;
     int *sequence;
     int actualPosition[2];
@@ -80,14 +88,8 @@ int movement(Map *map, data *data, int **track, int *actualPosition, int* index,
             result = movement(map, data, track, nextPosition, index, sequence);
             if (result) return 1;
         }
-    }   
-    return 0;
-}
-
-void print_field(Map *map) {
-    for (int i = 0; i < map->width; i++) {
-        for (int j = 0; j < map->height; j++) {
-            printf("%c", map->map[i][j]);
-        }
+        (*index) = (*index) - 1;
     }
+
+    return 0;
 }
