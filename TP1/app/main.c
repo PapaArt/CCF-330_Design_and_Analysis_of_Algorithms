@@ -2,7 +2,7 @@
 
 int main(){
 
-    map *map;
+    Map *map;
     data *data;
     menu(map, data);
     return 0;

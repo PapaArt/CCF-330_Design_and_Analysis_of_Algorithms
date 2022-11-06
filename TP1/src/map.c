@@ -1,16 +1,18 @@
 #include "../headers/map.h"
 
-void initialize_map(Map *map, int width, int height) {
+Map* initialize_map(int width, int height) {
+    Map *map = (Map*)malloc(sizeof(Map));
     map->height = height;
     map->width = width;
 
-    map->map = (char **)malloc(sizeof(char *) * height);
-    for (int i = 0; i < height; i++) {
-        map->map[i] = (char *)malloc(sizeof(char *) * width);
+    map->map = (int **)malloc(width * sizeof(int *));
+    for (int i = 0; i < width; i++) {
+        map->map[i] = (int *)malloc(height * sizeof(int));
     }
+    return map;
 }
 
-void insert_line(Map *map, int position, char *line) {
+void insert_line(Map *map, int position, int *line) {
     for (int i = 0; i < map->width; i++) {
         for (int j = 0; j < map->height; j++) {
             map->map[position][j] = line[j];
@@ -19,10 +21,11 @@ void insert_line(Map *map, int position, char *line) {
 }
 
 void print_field(Map *map) {
-    for (int i = 0; i < map->width; i++) {
-        for (int j = 0; j < map->height; j++) {
-            printf("%c", map->map[i][j]);
+    for (int i = 0; i < map->height; i++) {
+        for (int j = 0; j < map->width; j++) {
+            printf("%d ", map->map[i][j]);
         }
+        printf("\n");
     }
 }
 
@@ -50,19 +53,19 @@ int movement(Map *map, data *data, int **track, int *actualPosition, int* index,
     int trackOk[2];
     int nextPosition[2];
 
-    if (map->map[actualPosition[0]][actualPosition[1]] == sequence[(*index)] + '0') {
+    if (map->map[actualPosition[0]][actualPosition[1]] == sequence[(*index)]) {
         trackOk[0] = actualPosition[0];
         trackOk[1] = actualPosition[1];
         track[(*index)] = trackOk;
         (*index) = (*index) + 1;
-        if (actualPosition[0] == map->height) return 1;
+        if (actualPosition[0] == map->height) return TRUE;
 
         if (actualPosition[0] > 0) //movement para esquerda
         {
             nextPosition[0] = actualPosition[0]-1;
             nextPosition[1] = actualPosition[1];
             result = movement(map, data, track, nextPosition, index, sequence);
-            if (result) return 1;
+            if (result) return TRUE;
         }
 
         if (actualPosition[0] < map->width-1) //movement para direita
@@ -70,7 +73,7 @@ int movement(Map *map, data *data, int **track, int *actualPosition, int* index,
             nextPosition[0] = actualPosition[0]+1;
             nextPosition[1] = actualPosition[1];
             result = movement(map, data, track, nextPosition, index, sequence);
-            if (result) return 1;
+            if (result) return TRUE;
         }
 
         if (actualPosition[1] > 0) //movement para cima
@@ -78,7 +81,7 @@ int movement(Map *map, data *data, int **track, int *actualPosition, int* index,
             nextPosition[0] = actualPosition[0];
             nextPosition[1] = actualPosition[1]-1;
             result = movement(map, data, track, nextPosition, index, sequence);
-            if (result) return 1;
+            if (result) return TRUE;
         }
 
         if (actualPosition[0] < map->height-1) //movement para baixo
@@ -86,10 +89,10 @@ int movement(Map *map, data *data, int **track, int *actualPosition, int* index,
             nextPosition[0] = actualPosition[0];
             nextPosition[1] = actualPosition[1]+1;
             result = movement(map, data, track, nextPosition, index, sequence);
-            if (result) return 1;
+            if (result) return TRUE;
         }
         (*index) = (*index) - 1;
     }
 
-    return 0;
+    return FALSE;
 }

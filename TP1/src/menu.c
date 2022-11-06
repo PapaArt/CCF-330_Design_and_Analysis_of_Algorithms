@@ -9,22 +9,23 @@ void menu(Map *map, data *data){
 
     while (choice < 3)
     {
+        print_menu1();
+        scanf("%d", &choice);
         const char *base_path = "./data/";
-        char *line, filename[100], path[100];
+        char filename[100], path[100];
         int width, height, resposta, file_not_found;
         int lines = 0, line_map = 0, column = 0; 
 
         if (choice == 1)
-        {
-            remap(map, fptr, filename, path, &line, &lines, &height, &width, &line_map, &column, &resposta, data, &choice);
-            break;
+        {        
+            initialize_data(data);
+            // remap(map, fptr, filename, path, &lines, &height, &width, &line_map, &resposta, data, choice);
         }
         else if (choice == 2)
         {
             initialize_data(data);
-            remap(map, fptr, filename, path, &line, &lines, &height, &width, &line_map, &column, &resposta, data, &choice);
-            printf("Total de chamadas recursivas: %d\n", data->number_of_recursions);
-            break;
+            // remap(map, fptr, filename, path, &lines, &height, &width, &line_map, &resposta, data, choice);
+            // printf("Total de chamadas recursivas: %d\n", data->number_of_recursions);
         }
         else
         {break;}
@@ -94,9 +95,12 @@ void print_menu1(){
 
 }
 
-void remap(Map *map, FILE *fptr, char filename[100], char path[100], char **line, int *lines, int *height, int *width, int *line_map, int *column, int *resposta, data *data, int *option)
+void remap(Map *map, FILE *fptr, char filename[100], char path[100], int *lines, int *height, int *width, int *line_map, int *resposta, data *data, int option)
 {
     const char *base_path = "./data/";
+    int number;
+    int count;
+    int *line;
     printf("Digite o nome do arquivo: ");
     scanf("%s", filename);
     strcat(strcpy(path, base_path), filename);
@@ -122,22 +126,25 @@ void remap(Map *map, FILE *fptr, char filename[100], char path[100], char **line
         {
             // Dimensions of the map
             fscanf(fptr, "%d %d", &(*height), &(*width));
-            initialize_map(map, (*width), (*height));
+            map = initialize_map((*width), (*height));
 
-            (*line) = (char *)calloc((*width), sizeof(char));
+            line = (int *)malloc((*width) * sizeof(int));
         }
         else if ((*lines) >= 1 && (*lines) <= 1 + (*height))
         {
-            // Map itself
-            fscanf((fptr), "%s", (*line));
-            insert_line(map, (*line_map), (*line));
+            count = 0;
+            while (fscanf((fptr), "%d", &number) != -1)
+            {
+                    line[count] = number;
+                    count++;
+            }
+            insert_line(map, (*line_map), line);
             (*line_map)++;
         }
         else
         {
             break;
         }
-
         (*lines)++;
     }
 
@@ -146,17 +153,22 @@ void remap(Map *map, FILE *fptr, char filename[100], char path[100], char **line
 
     fclose(fptr);
 
-    int direction = 4;
+    int** track;
+    int* index;
     *lines = 0;
     printf("Lines value: %d\n", *lines);
-    (*resposta) = movement(map, direction, data, *lines, *column);
+    (*resposta) = beginMovement(map, data, track, index);
 
-    if (resposta == 0)
+    if ((*resposta) == FALSE)
     {
         printf("IMPOSSIVEL!!!\n");
     }
     else
     {
         printf("Posicoes: \n");
+        for (int i = 0; i < *index; i++)
+        {
+            printf("(%d, %d)\n", track[*index][0], track[*index][1]);
+        }        
     }
 }

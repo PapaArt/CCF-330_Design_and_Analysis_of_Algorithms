@@ -45,5 +45,4 @@ void printFibonnaci(int* sequence, int n) {
 		}
 		count++;
 	}
-	return sequence;
 }
