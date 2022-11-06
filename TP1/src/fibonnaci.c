@@ -32,4 +32,18 @@ void printFibonnaci(int* sequence, int n) {
 		printf("\n");
         count++;
     }
+	while (flag)
+	{
+		for (int j = 0; j < count; j++)	{
+			if (i == n) {
+				flag = 0;
+				break;
+			}
+			if (j < 2) sequence[i] = 1;
+			else sequence[i] = sequence[i-1] + sequence[i-2];
+			i++;
+		}
+		count++;
+	}
+	return sequence;
 }
