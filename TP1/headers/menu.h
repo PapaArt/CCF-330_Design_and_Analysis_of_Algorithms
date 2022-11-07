@@ -1,5 +1,5 @@
 #include "map.h"
 
 void menu();
-void print_menu1();
+void printMenu1();
 void remap(Data* data);

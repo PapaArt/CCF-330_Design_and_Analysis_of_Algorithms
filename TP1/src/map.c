@@ -1,6 +1,6 @@
 #include "../headers/map.h"
 
-void initialize_map(Map** map, int width, int height) {
+void initializeMap(Map** map, int width, int height) {
     (*map)->height = height;
     (*map)->width = width;
 
@@ -10,7 +10,7 @@ void initialize_map(Map** map, int width, int height) {
     }
 }
 
-void print_field(Map *map) {
+void printField(Map *map) {
     for (int i = 0; i < map->height; i++) {
         for (int j = 0; j < map->width; j++) {
             printf("%d ", map->map[i][j]);
@@ -19,7 +19,7 @@ void print_field(Map *map) {
     }
 }
 
-void initialize_data(Data *data) {
+void initializeData(Data *data) {
     data->number_of_recursions = -1;
 }
 

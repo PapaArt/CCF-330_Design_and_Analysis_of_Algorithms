@@ -20,10 +20,9 @@ typedef struct Data
     int number_of_recursions;
 } Data;
 
-void initialize_map(Map** map, int width, int height);
-void insert_line(Map *map, int position, int *line);
-void initialize_data(Data *data);
-void print_field(Map *map);
+void initializeMap(Map** map, int width, int height);
+void initializeData(Data *data);
+void printField(Map *map);
 int beginMovement(Map *map, Data *data);
 int movement(Map *map, Data *data, int **track, int *actualPosition, int* index, int *sequence);
 int inTracking(int **track, int* position, int *index);

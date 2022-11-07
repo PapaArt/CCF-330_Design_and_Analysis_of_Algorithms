@@ -7,15 +7,15 @@ void menu() {
     const char *base_path = "./data/";
     char filename[100], path[100];
     while (flag) {
-        print_menu1();
+        printMenu1();
         scanf("%d", &choice);
         switch (choice) {
             case 1:
-                initialize_data(data);
+                initializeData(data);
                 remap(data);
                 break;
             case 2:
-                initialize_data(data);
+                initializeData(data);
                 remap(data);
                 printf("Total de chamadas recursivas: %d\n", data->number_of_recursions);
                 break;
@@ -29,7 +29,7 @@ void menu() {
     }    
 }
 
-void print_menu1(){    
+void printMenu1(){    
     int i;
     fputs(" ", stdout);
     for (i = 0; i < 113; i++)
@@ -133,7 +133,7 @@ void remap(Data *data)
         if (flag) {
             if (count == 0) {
                 sscanf(line, "%d %d", &height, &width);
-                initialize_map(&map, width, height);
+                initializeMap(&map, width, height);
             } else {
                 j = 0;
                 word = strtok(line, " ");
@@ -149,7 +149,7 @@ void remap(Data *data)
     }
     fclose(fptr);    
     printf("Matriz: %d x %d\n", height, width);
-    print_field(map);
+    printField(map);
     printf("\n");
 
     resposta = beginMovement(map, data);
