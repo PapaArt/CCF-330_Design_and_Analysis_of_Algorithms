@@ -4,8 +4,6 @@ void menu() {
     Data *data = (Data*)malloc(sizeof(data)); 
     int choice;
     int flag = TRUE;
-    const char *base_path = "./data/";
-    char filename[100], path[100];
     while (flag) {
         printMenu1();
         scanf("%d", &choice);
@@ -24,6 +22,7 @@ void menu() {
                 flag = FALSE;
                 break;
             default:
+                printf("Programa finalizado com sucesso!!!\n");
                 break;            
         }
     }    
@@ -97,7 +96,7 @@ void remap(Data *data)
     FILE *fptr;
     char filename[100];
     char path[100];
-    const char *base_path = "./data/";
+    const char *basePath = "./data/";
     int count = 0;
     char *line;
     int j;
@@ -108,7 +107,7 @@ void remap(Data *data)
     
     printf("Digite o nome do arquivo: ");
     scanf("%s", filename);
-    strcat(strcpy(path, base_path), filename);
+    strcat(strcpy(path, basePath), filename);
     printf("%s\n", path);    
 
     (fptr) = fopen(path, "r");
@@ -120,7 +119,7 @@ void remap(Data *data)
 
         scanf("%s", filename);
 
-        strcat(strcpy(path, base_path), filename);
+        strcat(strcpy(path, basePath), filename);
 
         (fptr) = fopen(path, "r");
     }  

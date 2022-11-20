@@ -1,4 +1,3 @@
-APP = ./app
 DIST = ./dist
 HEADERS = ./headers
 OBJ = ./obj
@@ -6,7 +5,7 @@ SRC = ./src
 TEST = ./test
 
 all: libed
-	gcc $(APP)/main.c $(OBJ)/menu.o $(OBJ)/map.o $(OBJ)/fibonnaci.o -o ./dist/main
+	gcc $(SRC)/main.c $(OBJ)/menu.o $(OBJ)/map.o $(OBJ)/fibonnaci.o -o ./dist/main
 	$(DIST)/main
 
 libed:
