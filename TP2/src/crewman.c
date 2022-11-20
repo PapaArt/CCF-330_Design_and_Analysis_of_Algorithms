@@ -1,14 +1,13 @@
 #include "../headers/crewman.h"
 
-void initializeTrip(travel **travel, int sum, int width, int height)
+void initializeTrip(travel *travel, int width, int height)
 {
-    (*travel)->height = height;
-    (*travel)->width = width;
-
-    (*travel)->map = (int **)malloc(height * sizeof(int *));
-    for (int i = 0; i < height; i++)
+    travel->height = height;
+    travel->width = width;
+    travel->map = (int **)malloc(sizeof(int *) * width);
+    for (int i = 0; i < width; i++)
     {
-        (*travel)->map[i] = (int *)malloc(width * sizeof(int));
+        travel->map[i] = (int *)malloc(height * sizeof(int));
     }    
 }
 

@@ -1,8 +1,8 @@
 #include "../headers/menu.h"
 
 void menu(){
-    printMenu1();
-    printMenu2();
+    //printMenu1();
+    //printMenu2();
     remap();
 }
 
@@ -30,17 +30,26 @@ void menuHeader2(){
     printf("=========================\n");
 }
 
+int readBuffer(char *buffer, int *sz){
+    int ret;
+    if ((*sz) == 0) return 0;
+    buffer[*sz] = '\0';
+    sscanf(buffer, "%d", &ret);
+    *sz = 0;
+    return ret;
+}
+
 void remap(){
-    travel *travel = (travel)malloc(sizeof(travel));
+    travel *travel = (struct travel*)malloc(sizeof(travel));
     FILE *fptr;
     char filename[100];
+    char buffer[1000];
     char path[100];
     const char *basePath = "./data/";
+    char ch;
     int count = 0;
-    char *line1;
-    int *line2;
-    char *word;
-    int j;
+    int lines = 0;
+    char *line;
     int height, width;
     int answer;
     int flag;
@@ -51,7 +60,7 @@ void remap(){
     printf("%s\n", path);
 
     fptr = fopen(path, "r");
-
+    
     while (!(fptr))
     {
         printf("Erro ao ler arquivo!\n");
@@ -63,19 +72,32 @@ void remap(){
 
         (fptr) = fopen(path, "r");
     }
-
-    while (!feof(fptr))
+    int i = 0;
+    int j;
+    while ((ch = fgetc(fptr)) != EOF)
     {
-        if (count == 0)
+        if (isdigit(ch))
         {
-            sscanf(line1, "%d %d", &height, &width);
-            initializeTrip(&travel, 0, width, height);
-        }else if (count > 0 && count < (height)){
-            fscanf(fptr, "%d", line2);
-            insertLine(travel, count, line2);
+            buffer[count++] = ch;
         }
-    }    
-
+        else if (i == 0)
+        {
+            height = readBuffer(buffer,&count);
+            i++;
+        }
+        else if (i == 1)
+        {
+            width = readBuffer(buffer,&count);
+            initializeTrip(travel, width, height);
+            i++;
+        }
+        else
+        {
+             = readBuffer(buffer, &count);
+            j++;
+        }
+        
+    }
     fclose(fptr);
     printf("Grid: %d x %d\n", height, width);
     printGrid(travel);

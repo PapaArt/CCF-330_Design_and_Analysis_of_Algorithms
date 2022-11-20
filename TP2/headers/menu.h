@@ -5,4 +5,5 @@ void printMenu1();
 void printMenu2();
 void menuHeader1();
 void menuHeader2();
+int readBuffer(char *buffer, int *sz);
 void remap();
