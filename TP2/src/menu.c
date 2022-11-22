@@ -1,9 +1,63 @@
 #include "../headers/menu.h"
 
-void menu(){
+void menu(map *map){
     //printMenu1();
     //printMenu2();
-    remap();
+    mapping(map);
+}
+
+void mapping(map *map){
+    FILE *fptr;
+    char filename[100];
+    char buffer[1000];
+    char path[100];
+    const char *basePath = "./data/";
+    
+    printf("Digite o nome do arquivo: ");
+    scanf("%s", filename);
+    strcat(strcpy(path, basePath), filename);
+    printf("%s\n", path);
+
+    fptr = fopen(path, "r");
+    
+    while (!(fptr))
+    {
+        printf("Erro ao ler arquivo!\n");
+        printf("Insira o nome do arquivo novamente: ");
+
+        scanf("%s", filename);
+
+        strcat(strcpy(path, basePath), filename);
+
+        (fptr) = fopen(path, "r");
+    }
+
+    int width = 0;
+    int height = 0;
+
+    fscanf(fptr,"%d %d",&width,&height);
+    initializeMap(map,height,width);
+
+    int *data = (int *)malloc(sizeof(int *) * (width * height));
+
+    int positionWidth = 0 , positionHeight = 0;
+
+    for (int i = 0 ; ((i < width * height) && (fscanf(fptr, "%d ", &data[i]) == 1)) ; ++i){
+        if(i < height){
+            positionWidth = i;
+        }else{
+            positionHeight = i / height;
+            positionWidth = i - (height * positionHeight);
+        }
+
+        //printf("MAP [%d][%d] = %d \n",positionHeight,positionWidth,data[i]); 
+        
+        insertValue(map, positionHeight,positionWidth, data[i]);
+    }
+    
+    printf("Arquivo carregado com sucesso!\n\n");
+    printMap(map);
+    fclose(fptr);
 }
 
 void printMenu1(){
@@ -39,69 +93,27 @@ int readBuffer(char *buffer, int *sz){
     return ret;
 }
 
-void remap(){
-    travel *travel = (struct travel*)malloc(sizeof(travel));
-    FILE *fptr;
-    char filename[100];
-    char buffer[1000];
-    char path[100];
-    const char *basePath = "./data/";
-    char ch;
-    int count = 0;
-    int lines = 0;
-    char *line;
-    int height, width;
-    int answer;
-    int flag;
-
-    printf("Digite o nome do arquivo: ");
-    scanf("%s", filename);
-    strcat(strcpy(path, basePath), filename);
-    printf("%s\n", path);
-
-    fptr = fopen(path, "r");
-    
-    while (!(fptr))
+char **initFrame()
+{
+    char **frame = (char **)malloc(LINE * sizeof(char *));
+    int i, j;
+    for (i = 0; i < LINE; i++)
     {
-        printf("Erro ao ler arquivo!\n");
-        printf("Insira o nome do arquivo novamente: ");
-
-        scanf("%s", filename);
-
-        strcat(strcpy(path, basePath), filename);
-
-        (fptr) = fopen(path, "r");
+        frame[i] = (char *)malloc(COL * sizeof(char));
+        for (j = 0; j < COL; j++)
+        {
+            frame[i][j] = ' ';
+        }
     }
-    int i = 0;
-    int j;
-    while ((ch = fgetc(fptr)) != EOF)
-    {
-        if (isdigit(ch))
-        {
-            buffer[count++] = ch;
-        }
-        else if (i == 0)
-        {
-            height = readBuffer(buffer,&count);
-            i++;
-        }
-        else if (i == 1)
-        {
-            width = readBuffer(buffer,&count);
-            initializeTrip(travel, width, height);
-            i++;
-        }
-        else
-        {
-             = readBuffer(buffer, &count);
-            j++;
-        }
-        
-    }
-    fclose(fptr);
-    printf("Grid: %d x %d\n", height, width);
-    printGrid(travel);
-    printf("\n");
+    return frame;
+}
 
-    printf("Arquivo carregado com sucesso!\n\n");
+void rocket(char **frame)
+{
+
+}
+
+void printRocket(char **frame)
+{
+
 }

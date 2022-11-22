@@ -1,5 +1,7 @@
 #include "../headers/menu.h"
 
 void main(){
-    menu();
+
+    map map;
+    menu(&map);
 }
