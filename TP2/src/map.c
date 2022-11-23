@@ -30,23 +30,34 @@ void printMap(map *map){
     }
 }
 
-int gridmap(int width, int height, int *memo)
+int gridMap(map *map)
 {
-    //int *key = width;
-    // if (in(memo, sizeof(memo), key)) return memo[key];
-    // if (width == 1 && height == 1) return 1;
-    // if (width == 0 || height == 0) return 0;
+    int memo[10][10];
+    memo[0][0] = map->map[0][0];
 
-    // memo[key] = gridmap(width + 1, height, memo) + gridmap(width, height + 1, memo);
-    // return memo[key];
-    printf("qlqr coisa");
+    // Init the first row of memo
+    for (int j = 1; j < map->width; j++){
+        memo[0][j] = memo[0][j-1] + map->map[0][j];
+    }
+    
+    for (int i = 1; i < map->height; i++){
+        memo[i][0] = memo[i-1][0] + map->map[i][0];
+    }
+
+    for (int i = 1; i < map->height; i++)
+    {
+        for (int j = 1; j < map->width; j++)
+        {
+            memo[i][j] = min(memo[i-1][j], memo[i][j-1]) + map->map[i][j];
+        }
+    }    
+    
+    printf("map height -> %d\nmap width -> %d\n", (map->height-1), (map->width-1));
+
+    return memo[map->height-1][map->width-1];  
 }
 
-int in(int *array, int length, int value)
+int min(int a, int b)
 {
-    for (int i = 0; i < length; i++)
-    {
-        if (array[i] == value) return TRUE;
-    }
-    return FALSE;
+    return (a > b) ? b : a;
 }

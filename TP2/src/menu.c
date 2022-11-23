@@ -4,6 +4,7 @@ void menu(map *map){
     //printMenu1();
     //printMenu2();
     mapping(map);
+    printf("Memo desse trem -> %d\n",gridMap(map));
 }
 
 void mapping(map *map){
