@@ -32,7 +32,7 @@ void printMap(map *map){
 
 int gridMap(map *map)
 {
-    int memo[10][10];
+    int memo[3][3];
     memo[0][0] = map->map[0][0];
 
     // Init the first row of memo
@@ -55,6 +55,30 @@ int gridMap(map *map)
     printf("map height -> %d\nmap width -> %d\n", (map->height-1), (map->width-1));
 
     return memo[map->height-1][map->width-1];  
+}
+
+int numberWays(map *map)
+{
+    int ways[3][3];
+
+    ways[0][0] = 0;
+
+    for (int j = 1; j < map->width; j++)
+        ways[0][j] = 1;
+    for (int i = 1; i < map->height; i++)
+        ways[i][0] = 1;
+    
+    for (int i = 1; i < map->height; i++)
+    {
+        for (int j = 1; j < map->width; j++)
+        {
+            ways[i][j] = ways[i-1][j] + ways[i][j-1];
+        }
+    }
+
+    //printf("map height -> %d\nmap width -> %d\n", (map->height-1), (map->width-1));
+
+    return ways[map->height-1][map->width-1];
 }
 
 int min(int a, int b)

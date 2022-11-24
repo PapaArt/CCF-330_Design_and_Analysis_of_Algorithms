@@ -1,10 +1,34 @@
 #include "../headers/menu.h"
 
 void menu(map *map){
-    //printMenu1();
-    //printMenu2();
-    mapping(map);
-    printf("Memo desse trem -> %d\n",gridMap(map));
+    int choice[2];
+    printMenu1();
+    scanf("%d", &choice[0]);
+    if (choice[0] == 3)
+    {
+        printf("Programa encerrado com sucesso!!!\n");    
+    }
+    else
+    {
+        while (choice[0] == 1 || choice[1] == 1 || choice[0] == 2 || choice[1] == 2)
+        {
+            if (choice[0] == 1)
+            {
+                mapping(map);
+                printf("Soma Mínima: %d\n", gridMap(map));
+                printf("Quantidade de caminhos: %d\n",numberWays(map));
+                printMenu1();
+                scanf("%d", &choice[0]);            
+            }
+            else if (choice[0] == 2)
+            {
+                choice[0] = 3;
+                printMenu2();
+                scanf("%d", &choice[1]);
+            }
+        }
+        printf("Programa encerrado com sucesso!!!\n");
+    }
 }
 
 void mapping(map *map){
@@ -64,13 +88,13 @@ void mapping(map *map){
 void printMenu1(){
     menuHeader1();
     printf("(1) Execução        (2) Extras          (3) Sair\n");
-    printf("-------> \n");
+    printf("-------> ");
 }
 
 void printMenu2(){
     menuHeader2();
     printf("(1) Caminho gráfico         (2) Gerar arquivo         (3) Sair\n");
-    printf("-------> \n");
+    printf("-------> ");
 }
 
 void menuHeader1(){

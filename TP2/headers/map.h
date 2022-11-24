@@ -18,6 +18,7 @@ void insertValue(map *map,  int width, int height, int value);
 void printMap(map *map);
 void cleanMap(map *map);
 int gridMap(map *map);
+int numberWays(map *map);
 int min(int a, int b);
 
 #endif
