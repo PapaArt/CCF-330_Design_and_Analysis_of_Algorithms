@@ -62,24 +62,28 @@ int gridMap(map *map, int **memo)
             memo[i][j] = min(memo[i-1][j], memo[i][j-1]) + map->map[i][j];
         }
     } 
-    //printf("map height -> %d\nmap width -> %d\n", (map->height-1), (map->width-1));
 
     return memo[map->height-1][map->width-1];  
 }
 
-int numberWays(map *map, int **memo)
+int numberWays(map *map, int **memo, int x, int y, int count)
 {
-    int ways[3][3];
-    ways[0][0] = 1;
-    int count = 0;
-
-    
-    
-    //printf("map height -> %d\nmap width -> %d\n", (map->height-1), (map->width-1));
-
-    return count;
+    if (x == (map->height - 1) && y == (map->width - 1))
+    {return ++count;}
+    else if (x == (map->height - 1) && y != (map->width - 1))
+    {
+        count = numberWays(map, memo, x, y+1, count) + count;
+    }
+    else if (x != (map->height - 1) && y == (map->width - 1))
+    {
+        count = numberWays(map, memo, x+1, y, count) + count;   
+    }
+    else
+    {
+        count = numberWays(map, memo, x+1, y, count) + numberWays(map, memo, x, y+1, count) + count;
+    }
+     
 }
-
 int min(int a, int b)
 {
     return (a > b) ? b : a;

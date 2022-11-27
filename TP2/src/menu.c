@@ -18,7 +18,7 @@ void menu(map *map){
                 mapping(map);
                 memo = initializeMemo(map);
                 printf("Soma Mínima: %d\n", gridMap(map, memo));
-                printf("Quantidade de caminhos: %d\n",numberWays(map, memo));
+                printf("Quantidade de caminhos: %d\n",numberWays(map, memo, 0, 0, 0));
                 printMenu1();
                 scanf("%d", &choice[0]);            
             }
