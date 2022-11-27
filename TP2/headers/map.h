@@ -4,9 +4,6 @@
 #ifndef MAP_H
 #define MAP_H
 
-#define TRUE 1;
-#define FALSE 0;
-
 typedef struct map
 {
     int **map;
@@ -14,11 +11,12 @@ typedef struct map
 }map;
 
 void initializeMap(map *map, int width, int height);
+int **initializeMemo(map *map);
 void insertValue(map *map,  int width, int height, int value);
 void printMap(map *map);
 void cleanMap(map *map);
-int gridMap(map *map);
-int numberWays(map *map);
+int gridMap(map *map, int **memo);
+int numberWays(map *map, int **memo);
 int min(int a, int b);
 
 #endif

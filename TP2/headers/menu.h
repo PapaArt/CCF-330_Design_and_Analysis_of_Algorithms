@@ -4,12 +4,8 @@
 
 void menu(map *map);
 void mapping(map *map);
-
 void printMenu1();
 void printMenu2();
 void menuHeader1();
 void menuHeader2();
 int readBuffer(char *buffer, int *sz);
-char **initFrame();
-void rocket(char **frame);
-void printRocket(char **frame);

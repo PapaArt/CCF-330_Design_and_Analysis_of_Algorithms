@@ -4,4 +4,5 @@ void main(){
 
     map map;
     menu(&map);
+
 }

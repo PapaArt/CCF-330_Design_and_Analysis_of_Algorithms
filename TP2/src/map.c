@@ -13,6 +13,18 @@ void initializeMap(map *map, int width, int height)
     }  
 }
 
+int **initializeMemo(map *map)
+{
+    int **memo = (int **)malloc(sizeof(int *) * map->height);
+    for (int i = 0; i < map->height; i++)
+    {
+        // alocar a quantidade de colunas de cada linha
+        memo[i] = (int *)malloc(sizeof(int *) * map->width);
+    }
+
+    return memo;
+}
+
 void insertValue(map *map,  int width, int height, int value){
     map->map[width][height] = value;
 }
@@ -30,11 +42,9 @@ void printMap(map *map){
     }
 }
 
-int gridMap(map *map)
-{
-    int memo[3][3];
+int gridMap(map *map, int **memo)
+{   
     memo[0][0] = map->map[0][0];
-
     // Init the first row of memo
     for (int j = 1; j < map->width; j++){
         memo[0][j] = memo[0][j-1] + map->map[0][j];
@@ -42,6 +52,7 @@ int gridMap(map *map)
     
     for (int i = 1; i < map->height; i++){
         memo[i][0] = memo[i-1][0] + map->map[i][0];
+    
     }
 
     for (int i = 1; i < map->height; i++)
@@ -50,35 +61,23 @@ int gridMap(map *map)
         {
             memo[i][j] = min(memo[i-1][j], memo[i][j-1]) + map->map[i][j];
         }
-    }    
-    
-    printf("map height -> %d\nmap width -> %d\n", (map->height-1), (map->width-1));
+    } 
+    //printf("map height -> %d\nmap width -> %d\n", (map->height-1), (map->width-1));
 
     return memo[map->height-1][map->width-1];  
 }
 
-int numberWays(map *map)
+int numberWays(map *map, int **memo)
 {
     int ways[3][3];
+    ways[0][0] = 1;
+    int count = 0;
 
-    ways[0][0] = 0;
-
-    for (int j = 1; j < map->width; j++)
-        ways[0][j] = 1;
-    for (int i = 1; i < map->height; i++)
-        ways[i][0] = 1;
     
-    for (int i = 1; i < map->height; i++)
-    {
-        for (int j = 1; j < map->width; j++)
-        {
-            ways[i][j] = ways[i-1][j] + ways[i][j-1];
-        }
-    }
-
+    
     //printf("map height -> %d\nmap width -> %d\n", (map->height-1), (map->width-1));
 
-    return ways[map->height-1][map->width-1];
+    return count;
 }
 
 int min(int a, int b)

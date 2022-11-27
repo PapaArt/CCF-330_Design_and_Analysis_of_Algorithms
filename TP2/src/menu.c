@@ -2,6 +2,7 @@
 
 void menu(map *map){
     int choice[2];
+    int **memo;
     printMenu1();
     scanf("%d", &choice[0]);
     if (choice[0] == 3)
@@ -15,8 +16,9 @@ void menu(map *map){
             if (choice[0] == 1)
             {
                 mapping(map);
-                printf("Soma Mínima: %d\n", gridMap(map));
-                printf("Quantidade de caminhos: %d\n",numberWays(map));
+                memo = initializeMemo(map);
+                printf("Soma Mínima: %d\n", gridMap(map, memo));
+                printf("Quantidade de caminhos: %d\n",numberWays(map, memo));
                 printMenu1();
                 scanf("%d", &choice[0]);            
             }
@@ -62,7 +64,6 @@ void mapping(map *map){
 
     fscanf(fptr,"%d %d",&width,&height);
     initializeMap(map,height,width);
-
     int *data = (int *)malloc(sizeof(int *) * (width * height));
 
     int positionWidth = 0 , positionHeight = 0;
@@ -116,29 +117,4 @@ int readBuffer(char *buffer, int *sz){
     sscanf(buffer, "%d", &ret);
     *sz = 0;
     return ret;
-}
-
-char **initFrame()
-{
-    char **frame = (char **)malloc(LINE * sizeof(char *));
-    int i, j;
-    for (i = 0; i < LINE; i++)
-    {
-        frame[i] = (char *)malloc(COL * sizeof(char));
-        for (j = 0; j < COL; j++)
-        {
-            frame[i][j] = ' ';
-        }
-    }
-    return frame;
-}
-
-void rocket(char **frame)
-{
-
-}
-
-void printRocket(char **frame)
-{
-
 }
