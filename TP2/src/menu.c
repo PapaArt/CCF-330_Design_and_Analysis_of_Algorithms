@@ -3,6 +3,7 @@
 void menu(map *map){
     int choice[2];
     int **memo;
+    int somaAtual = 0;
     printMenu1();
     scanf("%d", &choice[0]);
     if (choice[0] == 3)
@@ -11,22 +12,16 @@ void menu(map *map){
     }
     else
     {
-        while (choice[0] == 1 || choice[1] == 1 || choice[0] == 2 || choice[1] == 2)
+        while (choice[0] == 1)
         {
             if (choice[0] == 1)
             {
                 mapping(map);
                 memo = initializeMemo(map);
                 printf("Soma Mínima: %d\n", gridMap(map, memo));
-                printf("Quantidade de caminhos: %d\n",numberWays(map, memo, 0, 0, 0));
+                printf("Quantidade de caminhos: %d\n",numberWays(map, memo, 0, 0, 0, somaAtual));
                 printMenu1();
                 scanf("%d", &choice[0]);            
-            }
-            else if (choice[0] == 2)
-            {
-                choice[0] = 3;
-                printMenu2();
-                scanf("%d", &choice[1]);
             }
         }
         printf("Programa encerrado com sucesso!!!\n");
@@ -88,13 +83,7 @@ void mapping(map *map){
 
 void printMenu1(){
     menuHeader1();
-    printf("(1) Execução        (2) Extras          (3) Sair\n");
-    printf("-------> ");
-}
-
-void printMenu2(){
-    menuHeader2();
-    printf("(1) Caminho gráfico         (2) Gerar arquivo         (3) Sair\n");
+    printf("(1) Execução            (2) Sair\n");
     printf("-------> ");
 }
 
@@ -102,19 +91,4 @@ void menuHeader1(){
     printf("=========================\n");
     printf("|                       |\n|                       |\n|                       |\n|                       |\n|         MENU          |\n|                       |\n|                       |\n|                       |\n|                       |\n");
     printf("=========================\n");
-}
-
-void menuHeader2(){
-    printf("=========================\n");
-    printf("|                       |\n|                       |\n|                       |\n|                       |\n|        EXTRAS         |\n|                       |\n|                       |\n|                       |\n|                       |\n");
-    printf("=========================\n");
-}
-
-int readBuffer(char *buffer, int *sz){
-    int ret;
-    if ((*sz) == 0) return 0;
-    buffer[*sz] = '\0';
-    sscanf(buffer, "%d", &ret);
-    *sz = 0;
-    return ret;
 }

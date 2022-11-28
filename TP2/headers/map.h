@@ -3,6 +3,7 @@
 #include <string.h>
 #ifndef MAP_H
 #define MAP_H
+#define MAX 2147483647
 
 typedef struct map
 {
@@ -16,7 +17,7 @@ void insertValue(map *map,  int width, int height, int value);
 void printMap(map *map);
 void cleanMap(map *map);
 int gridMap(map *map, int **memo);
-int numberWays(map *map, int **memo, int x, int y, int count);
+int numberWays(map *map, int **memo, int x, int y, int count, int before);
 int min(int a, int b);
 
 #endif
