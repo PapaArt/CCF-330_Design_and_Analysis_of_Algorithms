@@ -1,5 +1,15 @@
 #include "../headers/pattern.h"
 
+char **initializeCartesian()
+{
+    char **cartesian = (char**)malloc(LINE * sizeof(char *));
+    int i, j;
+    for (i = 0; i < LINE; i++)
+        for (j = 0; j < COL; j++)
+            cartesian[i][j] = ' ';
+
+    return cartesian;    
+}
 
 void badCharHeuristic(char *str, int size, int badChar[NO_CHARS])
 {
@@ -39,6 +49,22 @@ void search(char *txt, char *pat)
         else
             s += max(1, (j - badChar[txt[s+j]]));
     }
+}
+
+void cartesianProduct(char *cartesian, char arr1[], char arr2[], int n, int n1)
+{
+        
+}
+
+void printCartesian(char **cartesian)
+{
+    for (int i = 0; i < LINE; i++)
+    {
+        for (int j = 0; j < COL; j++)
+        {
+            printf("%c", cartesian[i][j]);
+        }printf("\n");
+    }    
 }
 
 int max(int a, int b){
