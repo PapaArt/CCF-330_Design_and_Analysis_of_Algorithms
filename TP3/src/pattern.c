@@ -1,9 +1,5 @@
 #include "../headers/pattern.h"
 
-// Fazer uma matriz com os produtos cartesianos
-// Gerar um valor randomico de 0 a 3
-// Escolher as linhas com os padrões que serão buscados na sequência dps
-
 char **initializeCartesian()
 {
     srand(time(0));
@@ -31,16 +27,21 @@ void badCharHeuristic(char *str, int size, int badChar[NO_CHARS])
     }
 }
 
-void search(char *txt, char *pat)
+int search(char *txt, char pat1, char pat2)
 {
-    int m = strlen(pat);
     int n = strlen(txt);
-
+    int m = 2;
+    char pat[2];
+    pat[0] = pat1;
+    pat[1] = pat2;
+    //printf("%c%c\n", pat[0], pat[1]);
+    //printf("%d\n", m);
     int badChar[NO_CHARS];
 
     badCharHeuristic(pat, m, badChar);
 
     int s = 0;
+    int count = 0;
 
     while (s <= (n - m))
     {
@@ -50,12 +51,15 @@ void search(char *txt, char *pat)
             j--;
         if (j < 0)
         {
-            printf("Pattern occurs at shift = %d\n", s);
+            //printf("Pattern occurs at shift = %d\n", s);
             s += (s+m < n) ? m - badChar[txt[s+m]] : 1;
+            count++;
         }
         else
             s += max(1, (j - badChar[txt[s+j]]));
     }
+
+    return count;
 }
 
 void cartesianProduct(char **cartesian, char arr1[], char arr2[], int n, int n1)
@@ -102,7 +106,7 @@ void printPattern(char *pattern)
 {
     for (int i = 0; i < (LINE/2); i++)
     {
-        printf("%c%c ", pattern[i], pattern[i++]);
+        printf("%c", pattern[i]);
     }
     printf("\n");
 }

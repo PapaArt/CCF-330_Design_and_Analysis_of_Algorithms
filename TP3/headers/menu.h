@@ -1,4 +1,3 @@
 #include "pattern.h"
 
-void menu();
-void printMenu1();
+void simulation();
