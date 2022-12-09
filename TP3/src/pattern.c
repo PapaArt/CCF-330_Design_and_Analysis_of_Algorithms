@@ -102,6 +102,25 @@ char *selectCartesian(char **cartesian)
     return pattern;
 }
 
+void similarity(int A[], int B[])
+{
+    int sum = 0;
+    double normX = 0; 
+    double normY = 0;
+    size_t n = sizeof(&A) / 2;
+    printf("%ld\n", n); 
+    for (int i = 0; i < n; i++)
+    {
+        sum += (A[i] * B[i]);
+        normX += pow(A[i], 2);
+        normY += pow(B[i], 2);
+    }
+    normX = sqrt(normX);
+    normY = sqrt(normY);
+
+    printf("Similarity = %lf\n", (sum / (normX * normY)));
+}
+
 void printPattern(char *pattern)
 {
     for (int i = 0; i < (LINE/2); i++)

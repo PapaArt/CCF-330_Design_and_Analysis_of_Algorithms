@@ -3,6 +3,7 @@
 #include <string.h>
 #include <limits.h>
 #include <time.h>
+#include <math.h>
 
 #define NO_CARTESIAN 2
 #define NO_CHARS 256
@@ -17,6 +18,7 @@ int search(char *txt, char pat1, char pat2);
 void cartesianProduct(char **cartesian, char arr1[], char arr2[], int n, int n1);
 // Function to select randomic values in the matrix of cartesian product to search for the pattern later
 char *selectCartesian(char **cartesian);
+void similarity(int A[], int B[]);
 void printCartesian(char **cartesian);
 void printPattern(char *pattern);
 int max(int a, int b);

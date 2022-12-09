@@ -14,10 +14,11 @@ void simulation(){
     char **cartesian = initializeCartesian();
     cartesianProduct(cartesian, txt, txt2, n, n);
     char *pattern = selectCartesian(cartesian);
+    char *patternTest = "AACCCTTG";
     for (i = 0; i < 4; i++)
     {
-        A[i] = search(hum, pattern[aux1], pattern[aux2]);
-        B[i] = search(chim, pattern[aux1], pattern[aux2]);
+        A[i] = search(hum, patternTest[aux1], patternTest[aux2]);
+        B[i] = search(chim, patternTest[aux1], patternTest[aux2]);
         aux1 += 2;
         aux2 += 2; 
     }
@@ -31,5 +32,5 @@ void simulation(){
         printf("%d ", B[i]);
     }printf("\n");
     //printPattern(pattern);
-    
+    similarity(A, B);   
 }
