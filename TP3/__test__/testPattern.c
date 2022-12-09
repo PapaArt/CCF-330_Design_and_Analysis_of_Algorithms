@@ -2,10 +2,14 @@
 
 void main(){
     char txt[] = "ACTG";
-    char pat[] = "ACTG";
+    char txt2[] = "ACTG";
+    char hum[] = "AACCCTG";
+    char chim[] = "AACCTG";
     char **cartesian = initializeCartesian(); 
-    int n = 2 * CARTESIAN;
-    //search(txt, pat);
-    cartesianProduct(cartesian, txt, pat, n, n);
-    printCartesian(cartesian);
+    int n = 2 * NO_CARTESIAN;
+    //search(hum, chim);
+    selectCartesian(cartesian);
+    cartesianProduct(cartesian, txt, txt2, n, n);
+    printPattern(selectCartesian(cartesian));
+    //printCartesian(cartesian);
 }

@@ -1,7 +1,7 @@
 #include "../headers/menu.h"
 
 void menu(){
-    printf("Test\n");
+    char **cartesian = initializeCartesian();
 }
 
 void printMenu1(){
