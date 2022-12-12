@@ -50,7 +50,6 @@ int search(char *txt, char pat1, char pat2)
             j--;
         if (j < 0)
         {
-            //printf("Pattern occurs at shift = %d\n", s);
             s += (s+m < n) ? m - badChar[txt[s+m]] : 1;
             count++;
         }
@@ -87,6 +86,15 @@ char *selectCartesian(char **cartesian)
         position[i] = (rand() % 15) + 1;
     }
     
+    // Verify if the array has any duplicates
+    for (int i = 0; i < NO_CARTESIAN; i++) {
+        for (int j = i + 1; j < NO_CARTESIAN; j++) {
+        if (position[i] == position[j]) {
+                position[i] = (rand() % 15) + 1;
+            }
+        }
+    }
+
     int i = 0;
     int aux = 0;
     while (i < NO_CARTESIAN)
@@ -101,11 +109,12 @@ char *selectCartesian(char **cartesian)
     return pattern;
 }
 
-void similarity(int A[], int B[])
+double similarity(int A[], int B[])
 {
-    int sum = 0;
-    double normX = 0; 
-    double normY = 0;
+    double sum = 0.0;
+    double normX = 0.0; 
+    double normY = 0.0;
+    double similarity = 0.0;
     size_t n = sizeof(&A) / 2;
     for (int i = 0; i < n; i++)
     {
@@ -116,11 +125,14 @@ void similarity(int A[], int B[])
     normX = sqrt(normX);
     normY = sqrt(normY);
 
-    printf("Similaridade = %lf\n", (sum / (normX * normY)));
+    similarity = (sum / (normX * normY));
+    
+    return similarity;
 }
 
 void printPattern(char *pattern)
 {
+    printf("Padrão de sequência a ser buscado: ");
     for (int i = 0; i < (LINE/2); i++)
     {
         printf("%c", pattern[i]);

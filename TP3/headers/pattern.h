@@ -7,6 +7,7 @@
 
 #define NO_CARTESIAN 4
 #define NO_CHARS 256
+#define BENCHMARK 10
 #define LINE 16
 #define COL 2
 
@@ -19,7 +20,7 @@ void cartesianProduct(char **cartesian, char arr1[], char arr2[], int n);
 // Function to select randomic values in the matrix of cartesian product to search for the pattern later
 char *selectCartesian(char **cartesian);
 // Function to calculate the similarity
-void similarity(int A[], int B[]);
+double similarity(int A[], int B[]);
 void printCartesian(char **cartesian);
 void printPattern(char *pattern);
 void printArrayAB(int A[], int B[]);
