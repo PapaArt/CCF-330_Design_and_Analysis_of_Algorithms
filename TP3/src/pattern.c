@@ -29,14 +29,13 @@ void badCharHeuristic(char *str, int size, int badChar[NO_CHARS])
 
 int search(char *txt, char pat1, char pat2)
 {
+    int badChar[NO_CHARS];
     int n = strlen(txt);
     int m = 2;
     char pat[2];
+
     pat[0] = pat1;
     pat[1] = pat2;
-    //printf("%c%c\n", pat[0], pat[1]);
-    //printf("%d\n", m);
-    int badChar[NO_CHARS];
 
     badCharHeuristic(pat, m, badChar);
 
@@ -62,13 +61,13 @@ int search(char *txt, char pat1, char pat2)
     return count;
 }
 
-void cartesianProduct(char **cartesian, char arr1[], char arr2[], int n, int n1)
+void cartesianProduct(char **cartesian, char arr1[], char arr2[], int n)
 {
     int aux1, aux2;
     aux1 = 0;
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < n1; j++)
+        for (int j = 0; j < n; j++)
         {
             aux2 = 0;
             cartesian[aux1][aux2] = arr1[i];
@@ -82,15 +81,15 @@ void cartesianProduct(char **cartesian, char arr1[], char arr2[], int n, int n1)
 char *selectCartesian(char **cartesian)
 {
     char *pattern = (char *)malloc((LINE/2) * sizeof(char));
-    int position[4];
-    for (int i = 0; i < 4; i++)
+    int position[NO_CARTESIAN];
+    for (int i = 0; i < NO_CARTESIAN; i++)
     {
         position[i] = (rand() % 15) + 1;
     }
     
     int i = 0;
     int aux = 0;
-    while (i < 4)
+    while (i < NO_CARTESIAN)
     {
         pattern[aux] = cartesian[position[i]][0];
         aux++;
@@ -108,7 +107,6 @@ void similarity(int A[], int B[])
     double normX = 0; 
     double normY = 0;
     size_t n = sizeof(&A) / 2;
-    printf("%ld\n", n); 
     for (int i = 0; i < n; i++)
     {
         sum += (A[i] * B[i]);
@@ -118,7 +116,7 @@ void similarity(int A[], int B[])
     normX = sqrt(normX);
     normY = sqrt(normY);
 
-    printf("Similarity = %lf\n", (sum / (normX * normY)));
+    printf("Similaridade = %lf\n", (sum / (normX * normY)));
 }
 
 void printPattern(char *pattern)
@@ -139,6 +137,19 @@ void printCartesian(char **cartesian)
             printf("%c", cartesian[i][j]);
         }printf("\n");
     }
+}
+
+void printArrayAB(int A[], int B[])
+{
+    for (int i = 0; i < NO_CARTESIAN; i++)
+    {
+        printf("%d ", A[i]);
+    }
+    printf("\n");
+    for (int i = 0; i < NO_CARTESIAN; i++)
+    {
+        printf("%d ", B[i]);
+    }printf("\n");
 }
 
 int max(int a, int b){
