@@ -7,7 +7,7 @@
 
 #define NO_CARTESIAN 4
 #define NO_CHARS 256
-#define BENCHMARK 10
+#define BENCHMARK 100
 #define LINE 16
 #define COL 2
 
